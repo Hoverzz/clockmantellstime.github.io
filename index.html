@@ -14,15 +14,7 @@
       padding: 12px 16px;
       z-index: 1;  
     }
-    .schools{
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 250px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;  
-    }
+
     .dropdown-content {
       display: none;
       position: absolute;
@@ -137,26 +129,9 @@
             <button id="max_skyscrapers">max</button>
             <label id="skyscrapers"></label>
             </div>
-          </div>
-        
-      
-
+            </div>
           </div>
 
-         <div class="button2">
-            <button>schooling</button>
-            <div class="schools">
-                
-                <div class="elementry school">
-                <button id="add elementry_school">+</button>
-                <button id="remove elementry_school">-</button>
-                <button id="max elementry_school">max</button>
-                <label id="elementry_schools"></label>
-                </div>
-
-              </div>  
-
-          </div>
       </div>
 
       
@@ -213,7 +188,6 @@
     document.getElementById("add_skyscrapers").addEventListener("click",add_skyscrapers);
     document.getElementById("remove_skyscrapers").addEventListener("click",remove_skyscrapers);
     document.getElementById("max_skyscrapers").addEventListener("click",max_skyscrapers);
-    document.getElementById("add elementry_school").addEventListener("click",build_elemetry_school);
 
     
     document.getElementById("city name").innerHTML = name;
@@ -228,7 +202,6 @@
     document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
     document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
     document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
-    document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
 
 
     //functions
@@ -244,7 +217,6 @@
       document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
       document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
       document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
-      document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
     }
 
     function earn() {
@@ -529,14 +501,6 @@
       update();
     }
 
-    function build_elemetry_school() {
-      if (money > 0) {
-      elementry_schools = elementry_schools + 1;
-      money = money - 0;
-      population = Math.floor((population * 125)/100);
-      update();
-      }
-    }
 
   </script>
 
