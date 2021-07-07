@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title id="name">city clicker</title>
+  </head>
+  
+  <body>
+    
+    <div class="container">
+      <label id="city name"></label>
+      
+      <br>
+      
+      <br>
+      <label id="money_display"></label>
+      
+      <br>
+      <label id="pop_display"></label>
+      
+      <br>
+      <label id="income_display"></label>
+      
+      <br>
+      
+      <br>
+      <button id="money_button">Collect taxes</button>
+
+      <br>
+      <div class="dropdown">
+        <button id="upgrade buttons">uppgrades</button>
+        <div class="dropdown-content">
+          <div class="button1">
+
+          <button>homes</button>
+          <div class="homes">
+          
+            <div class="house">
+            <button id="add_house">+</button>
+            <button id="remove_house">-</button>
+            <button id="max_house">max</button>
+            <label id="houses"></label>
+            </div>
+
+            <div class="mansion">
+            <button id="add_mansion">+</button>
+            <button id="remove_mansion">-</button>
+            <button id="max_mansion">max</button>
+            <label id="mansions"></label>
+            </div>
+            
+            <div class="small_apartments">
+            <button id="add_small_apartments">+</button>
+            <button id="remove_small_apartments">-</button>
+            <button id="max_small_apartments">max</button>
+            <label id="small_apartments"></label>
+            </div>
+
+            <div class="medium_apartments">
+            <button id="add_medium_apartments">+</button>
+            <button id="remove_medium_apartments">-</button>
+            <button id="max_medium_apartments">max</button>
+            <label id="medium_apartments"></label>
+            </div>
+
+            <div class="large_apartments">
+            <button id="add_large_apartments">+</button>
+            <button id="remove_large_apartments">-</button>
+            <button id="max_large_apartments">max</button>
+            <label id="large_apartments"></label>
+            </div>
+            
+            <div class="mega_apartments">
+            <button id="add_mega_apartments">+</button>
+            <button id="remove_mega_apartments">-</button>
+            <button id="max_mega_apartments">max</button>
+            <label id="mega_apartments"></label>
+            </div>
+            
+            <div class="skyscrapers">
+            <button id="add_skyscrapers">+</button>
+            <button id="remove_skyscrapers">-</button>
+            <button id="max_skyscrapers">max</button>
+            <label id="skyscrapers"></label>
+            </div>
+          </div>
+        
+      
+
+          </div>
+
+         <div class="button2">
+            <button>schooling</button>
+            <div class="schools">
+                
+                <div class="elementry school">
+                <button id="add elementry_school">+</button>
+                <button id="remove elementry_school">-</button>
+                <button id="max elementry_school">max</button>
+                <label id="elementry_schools"></label>
+                </div>
+
+              </div>  
+
+          </div>
+      </div>
+
+      
+    </div>
+
+    
+  </body>
+  
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .homes{
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;  
+    }
+    .schools{
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;  
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .button1:hover .homes{
+      display: block;
+    }
+    .button2:hover .schools{
+      display: block;
+    }
+
+  </style>
+  <style>
+    .container{
+     text-align: center;
+    }
+
+    .dropdown-content {
+      text-align: left;
+    }  
+
+  </style>  
+    
+  <script>
+    window.alert("Welcome to city clicker, this is a game where you manage your city and collect taxes. Enjoy!");
+    
+    var name = prompt("Enter a name for your city");
+    var money = 1000;
+    var population = 0;
+    var income = Math.floor(population/5);
+
+    var houses = 0;
+    var mansions = 0;
+    var small_apartments = 0;
+    var medium_apartments = 0;
+    var large_apartments = 0;
+    var mega_apartments = 0;
+    var skyscrapers = 0;
+
+    var elementry_schools = 0;
+
+    
+    
+    //document.getElementById("test").addEventListener("click",give);
+
+    
+    document.getElementById("money_button").addEventListener("click",earn);
+    document.getElementById("add_house").addEventListener("click",add_house);
+    document.getElementById("remove_house").addEventListener("click",remove_house);
+    document.getElementById("max_house").addEventListener("click",max_house);
+    document.getElementById("add_mansion").addEventListener("click",add_mansion);
+    document.getElementById("remove_mansion").addEventListener("click",remove_mansion);
+    document.getElementById("max_mansion").addEventListener("click",max_mansion);
+    document.getElementById("add_small_apartments").addEventListener("click",add_small_apartments);
+    document.getElementById("remove_small_apartments").addEventListener("click",remove_small_apartments);
+    document.getElementById("max_small_apartments").addEventListener("click",max_small_apartments);
+    document.getElementById("add_medium_apartments").addEventListener("click",add_medium_apartments); 
+    document.getElementById("remove_medium_apartments").addEventListener("click",remove_medium_apartments);
+    document.getElementById("max_medium_apartments").addEventListener("click",max_medium_apartments);
+    document.getElementById("add_large_apartments").addEventListener("click",add_large_apartments);
+    document.getElementById("remove_large_apartments").addEventListener("click",remove_large_apartments);
+    document.getElementById("max_large_apartments").addEventListener("click",max_large_apartments);
+    document.getElementById("add_mega_apartments").addEventListener("click",add_mega_apartments);
+    document.getElementById("remove_mega_apartments").addEventListener("click",remove_mega_apartments);
+    document.getElementById("max_mega_apartments").addEventListener("click",max_mega_apartments);
+    document.getElementById("add_skyscrapers").addEventListener("click",add_skyscrapers);
+    document.getElementById("remove_skyscrapers").addEventListener("click",remove_skyscrapers);
+    document.getElementById("max_skyscrapers").addEventListener("click",max_skyscrapers);
+    document.getElementById("add elementry_school").addEventListener("click",build_elemetry_school);
+
+    
+    document.getElementById("city name").innerHTML = name;
+    document.getElementById("name").innerHTML = name;
+    document.getElementById("money_display").innerHTML = "money: "+money;
+    document.getElementById("pop_display").innerHTML = "population: " + population;
+    document.getElementById("income_display").innerHTML = "income from taxes: " + income;
+    document.getElementById("houses").innerHTML = "houses: " + houses;
+    document.getElementById("mansions").innerHTML = "mansions: " + mansions;
+    document.getElementById("small_apartments").innerHTML = "small apartments: " + small_apartments;
+    document.getElementById("medium_apartments").innerHTML = "medium apartments: " + medium_apartments;
+    document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
+    document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
+    document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
+    document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
+
+
+    //functions
+    function update() {
+      income = Math.floor(population/5);
+      document.getElementById("money_display").innerHTML = "money: "+money;
+      document.getElementById("income_display").innerHTML = "income from taxes: " + income;
+      document.getElementById("pop_display").innerHTML = "population: " + population;
+      document.getElementById("mansions").innerHTML = "mansions: " + mansions;
+      document.getElementById("houses").innerHTML = "houses: " + houses;
+      document.getElementById("small_apartments").innerHTML = "small apartments: " + small_apartments;
+      document.getElementById("medium_apartments").innerHTML = "medium apartments: " + medium_apartments;
+      document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
+      document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
+      document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
+      document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
+    }
+
+    function earn() {
+      money = money + income;
+      update();
+      
+    }
+
+    function give() {
+      var give = parseInt(prompt("enter money value"));
+      money = money + give;
+      update();
+      //<button id="test">give money</button>
+    }
+
+    function add_house() {
+      if (money > 499) {
+      money = money - 500;
+      houses = houses + 1;
+      population = population + 5
+      income = Math.floor(population/5);
+
+      update();
+      }
+      else{
+        window.alert("You need " + (500-money) + " more money to build a house.")
+      }
+    }
+
+    function remove_house() {
+      if (houses != 0) {
+      money = money + 500;
+      population = population - 5;
+      houses = houses - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 house to remove a house.")
+      }
+    }
+
+    function max_house() {
+      var x = Math.floor(money/500);
+      var cost = x * 500;
+
+      houses = houses + x;
+      money = money - cost;
+      population = population + (x * 5)
+
+      update();
+    }
+    
+    function add_mansion() {
+      if (money > 1499) {
+      money = money - 1500;
+      mansions = mansions + 1;
+      population = population + 20
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (1500-money) + " more money to build a mansion.")
+      }
+    }
+ 
+    function remove_mansion() {
+      if (mansions != 0) {
+      money = money + 1500;
+      population = population - 20;
+      mansions = mansions - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 mansion to remove a mansion.")
+      }
+    }
+
+    function max_mansion() {
+      var x = Math.floor(money/1500);
+      var cost = x * 1500;
+
+      mansions = mansions + x;
+      money = money - cost;
+      population = population + (x * 20)
+
+      update();
+    }
+
+    function max_small_apartments() {
+      var x = Math.floor(money/5000);
+      var cost = x * 5000;
+
+      small_apartments = small_apartments + x;
+      money = money - cost;
+      population = population + (x * 50)
+
+      update();
+    }
+
+    function add_small_apartments() {
+      if (money > 4999) {
+      money = money - 5000;
+      small_apartments = small_apartments + 1;
+      population = population + 50
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (5000-money) + " more money to build a small apartment.")
+      }
+    }
+ 
+    function remove_small_apartments() {
+      if (small_apartments != 0) {
+      money = money + 5000;
+      population = population - 50;
+      small_apartments = small_apartments - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 small apartment to remove a small apartment.")
+      }
+    }
+
+    function add_medium_apartments() {
+      if (money > 19999) {
+      money = money - 20000;
+      medium_apartments = medium_apartments + 1;
+      population = population + 250
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (20000-money) + " more money to build a medium apartment.")
+      }
+    }
+ 
+    function remove_medium_apartments() {
+      if (medium_apartments != 0) {
+        money = money + 20000;
+        population = population - 250;
+        medium_apartments = medium_apartments - 1;
+        income = Math.floor(population/5);
+      }
+      else{
+        window.alert("You need atleast 1 medium apartment to remove a medium apartment.");
+      }
+    }
+
+     
+    function max_medium_apartments() {
+      var x = Math.floor(money/20000);
+      var cost = x * 20000;
+ 
+      medium_apartments = medium_apartments + x;
+      money = money - cost;
+      population = population + (x * 250)
+ 
+      update();
+    }
+
+
+  
+
+    function add_large_apartments() {
+      if (money > 99999) {
+      money = money - 100000;
+      large_apartments = large_apartments + 1;
+      population = population + 1500
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (100000-money) + " more money to build a large apartment.")
+      }
+    }
+ 
+    function remove_large_apartments() {
+      if (large_apartments != 0) {
+      money = money + 100000;
+      population = population - 1500;
+      large_apartments = large_apartments - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 large apartment to remove a large apartment.")
+      }
+    }
+ 
+    function max_large_apartments() {
+      var x = Math.floor(money/100000);
+      var cost = x * 100000;
+ 
+      large_apartments = large_apartments + x;
+      money = money - cost;
+      population = population + (x * 1500)
+ 
+      update();
+    }
+
+    function add_mega_apartments() {
+      if (money > 999999) {
+      money = money - 1000000;
+      mega_apartments = mega_apartments + 1;
+      population = population + 50000
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (1000000-money) + " more money to build a mega apartment.")
+      }
+    }
+ 
+    function remove_mega_apartments() {
+      if (mega_apartments != 0) {
+      money = money + 1000000;
+      population = population - 50000;
+      mega_apartments = mega_apartments - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 mega apartment to remove a mega apartment.")
+      }
+    }
+ 
+    function max_mega_apartments() {
+      var x = Math.floor(money/1000000);
+      var cost = x *1000000;
+ 
+      mega_apartments = mega_apartments + x;
+      money = money - cost;
+      population = population + (x * 50000)
+ 
+      update();
+    }
+
+    function add_skyscrapers() {
+      if (money > 999999999) {
+      money = money - 1000000000;
+      skyscrapers = skyscrapers + 1;
+      population = population + 100000000
+      income = Math.floor(population/5);
+ 
+      update();
+      }
+      else{
+        window.alert("You need " + (1000000000-money) + " more money to build a skyscraper.")
+      }
+    }
+ 
+    function remove_skyscrapers() {
+      if (skyscrapers != 0) {
+      money = money + 1000000000;
+      population = population - 100000000;
+      skyscrapers = skyscrapers - 1;
+      income = Math.floor(population/5);
+      update();
+      }
+      else{
+        window.alert("You need atleast 1 skyscraper to remove a skyscraper.")
+      }
+    }
+ 
+    function max_skyscrapers() {
+      var x = Math.floor(money/1000000000);
+      var cost = x *1000000000;
+ 
+      skyscrapers = skyscrapers + x;
+      money = money - cost;
+      population = population + (x * 100000000)
+ 
+      update();
+    }
+
+    function build_elemetry_school() {
+      if (money > 0) {
+      elementry_schools = elementry_schools + 1;
+      money = money - 0;
+      population = Math.floor((population * 125)/100);
+      update();
+      }
+    }
+
+  </script>
+
+  
+
+</html>
