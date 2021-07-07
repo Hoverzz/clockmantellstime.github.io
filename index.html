@@ -1,5 +1,60 @@
 <!DOCTYPE html>
 <html>
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .homes{
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;  
+    }
+    .schools{
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;  
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .button1:hover .homes{
+      display: block;
+    }
+    .button2:hover .schools{
+      display: block;
+    }
+
+  </style>
+  <style>
+    .container{
+     text-align: center;
+    }
+
+    .dropdown-content {
+      text-align: left;
+    }  
+
+  </style>  
   <head>
     <title id="name">city clicker</title>
   </head>
@@ -110,61 +165,7 @@
     
   </body>
   
-  <style>
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .homes{
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 250px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;  
-    }
-    .schools{
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 250px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;  
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 250px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    
-    .button1:hover .homes{
-      display: block;
-    }
-    .button2:hover .schools{
-      display: block;
-    }
-
-  </style>
-  <style>
-    .container{
-     text-align: center;
-    }
-
-    .dropdown-content {
-      text-align: left;
-    }  
-
-  </style>  
+  
     
   <script>
     window.alert("Welcome to city clicker, this is a game where you manage your city and collect taxes. Enjoy!");
