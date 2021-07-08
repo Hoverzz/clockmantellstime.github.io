@@ -543,7 +543,8 @@
       if (money > 0) {
       elementry_schools = elementry_schools + 1;
       money = money - 0;
-      population = Math.floor((population * 125)/100);
+      populationAdd = Math.floor((population * 125)/100);
+      population = population + populationAdd;  
       update();
       }
     }
