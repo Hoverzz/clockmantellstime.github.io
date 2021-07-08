@@ -260,7 +260,11 @@
     }
 
     function give() {
-      var give = parseInt(prompt("enter money value"));
+      var give = prompt("enter money value");
+      if (give == "") {
+       give = 0; 
+      }  
+      give = parseInt(give)
       money = money + give;
       update();
       //<button id="test">give money</button>
