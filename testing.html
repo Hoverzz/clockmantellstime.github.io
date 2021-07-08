@@ -240,6 +240,7 @@
     function update() {
       income = Math.floor(population/5);
       document.getElementById("money_display").innerHTML = "money: "+money;
+      document.getElementById("name").innerHTML = name + " - " + money;
       document.getElementById("income_display").innerHTML = "income from taxes: " + income;
       document.getElementById("pop_display").innerHTML = "population: " + population;
       document.getElementById("mansions").innerHTML = "mansions: " + mansions;
@@ -250,7 +251,6 @@
       document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
       document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
       document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
-      document.getElementById("name").innerHTML = name + " - " + money;
     }
 
     function earn() {
@@ -543,8 +543,7 @@
       if (money > 249999) {
       elementry_schools = elementry_schools + 1;
       money = money - 250000;
-      populationAdd = Math.floor((population * 125)/100);
-      population = population + populationAdd;  
+      population = Math.floor((population * 125)/100);
       update();
       }
     }
