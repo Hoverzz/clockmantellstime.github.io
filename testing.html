@@ -173,7 +173,7 @@
     window.alert("Welcome to city clicker, this is a game where you manage your city and collect taxes. Enjoy!");
     
     var name = prompt("Enter a name for your city")
-    if (not name) {
+    if (name = "") {
      name = "city"; 
     }
     
@@ -261,10 +261,6 @@
 
     function give() {
       var give = parseInt(prompt("enter money value"));
-      if (not give) {
-        give = 0;
-      }
-      
       money = money + give;
       update();
       //<button id="test">give money</button>
