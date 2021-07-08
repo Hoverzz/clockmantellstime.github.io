@@ -222,6 +222,7 @@
     document.getElementById("remove_skyscrapers").addEventListener("click",remove_skyscrapers);
     document.getElementById("max_skyscrapers").addEventListener("click",max_skyscrapers);
     document.getElementById("add elementry_school").addEventListener("click",build_elemetry_school);
+    document.getElementById("remove elemntry_school").addEventListener("click",remove_elemetry_school);
 
     
     document.getElementById("city name").innerHTML = name;
@@ -550,6 +551,16 @@
       update();
       }
     }
+    else{
+     window.alert("You need " + (250000 - money) + " more money to build an elemetry school!"); 
+    }  
+    
+    function remove_elementry_school() {
+      if (elementry_schools == 0) {
+        elementry_schools elementry_schools - 1;
+        money = money + 250000;
+      }
+    } 
 
   </script>
 
