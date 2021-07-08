@@ -540,9 +540,9 @@
     }
 
     function build_elemetry_school() {
-      if (money > 0) {
+      if (money > 249999) {
       elementry_schools = elementry_schools + 1;
-      money = money - 0;
+      money = money - 250000;
       populationAdd = Math.floor((population * 125)/100);
       population = population + populationAdd;  
       update();
