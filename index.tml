@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+<button id="test"></button>
+</body>
+  <script>
+    document.getElementById("test").addEventListener("click",test); 
+    
+    window.alert(document.cookie);
+    funtion test() {
+    document.cookie = "username=John Doe; expires=Sun, 11 Jul 2021 12:00:00 UTC";
+    }
+    
+  </script>
+</html>
