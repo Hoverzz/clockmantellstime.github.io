@@ -146,6 +146,13 @@
     window.alert("Welcome to city clicker, this is a game where you manage your city and collect taxes. Enjoy!");
     
     var name = prompt("Enter a name for your city")
+    if (name == "") {
+     name = "city"; 
+    }
+    if (name == "null") {
+     name = "city"; 
+    }
+
     
     var money = 1000;
     var population = 0;
@@ -191,6 +198,7 @@
 
     
     document.getElementById("city name").innerHTML = name;
+    document.getElementById("name").innerHTML = name + " - " + money;
     document.getElementById("name").innerHTML = name;
     document.getElementById("money_display").innerHTML = "money: "+money;
     document.getElementById("pop_display").innerHTML = "population: " + population;
@@ -208,6 +216,7 @@
     function update() {
       income = Math.floor(population/5);
       document.getElementById("money_display").innerHTML = "money: "+money;
+      document.getElementById("name").innerHTML = name + " - " + money;
       document.getElementById("income_display").innerHTML = "income from taxes: " + income;
       document.getElementById("pop_display").innerHTML = "population: " + population;
       document.getElementById("mansions").innerHTML = "mansions: " + mansions;
@@ -269,7 +278,7 @@
 
       update();
     }
-    
+     
     function add_mansion() {
       if (money > 1499) {
       money = money - 1500;
