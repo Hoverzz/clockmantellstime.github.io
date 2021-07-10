@@ -143,22 +143,7 @@
 
           </div>
 
-         <div class="button2">
-            <button>schooling</button>
-            <div class="schools">
-                
-                <div class="elementry school">
-                <button id="add elementry_school">+</button>
-                <button id="remove elementry_school">-</button>
-                <button id="max elementry_school">max</button>
-                <label id="elementry_schools"></label>
-                </div>
 
-              </div>  
-
-          </div>
-          
-          <button id="test">give money</button>
       </div>
 
       
@@ -174,12 +159,7 @@
    
     
     var name = prompt("Enter a name for your city")
-    if (name == "") {
-     name = "city"; 
-    }
-    if (name == "null") {
-     name = "city"; 
-    }
+
     
     var money = 1000;
     var population = 0;
@@ -197,7 +177,7 @@
 
     
     
-    document.getElementById("test").addEventListener("click",give);
+    
 
     
     document.getElementById("money_button").addEventListener("click",earn);
@@ -222,12 +202,11 @@
     document.getElementById("add_skyscrapers").addEventListener("click",add_skyscrapers);
     document.getElementById("remove_skyscrapers").addEventListener("click",remove_skyscrapers);
     document.getElementById("max_skyscrapers").addEventListener("click",max_skyscrapers);
-    document.getElementById("add elementry_school").addEventListener("click",build_elemetry_school);
-    document.getElementById("remove elemntry_school").addEventListener("click",remove_elemetry_school);
+
 
     
     document.getElementById("city name").innerHTML = name;
-    document.getElementById("name").innerHTML = name + " - " + money;
+    
     document.getElementById("money_display").innerHTML = "money: "+money;
     document.getElementById("pop_display").innerHTML = "population: " + population;
     document.getElementById("income_display").innerHTML = "income from taxes: " + income;
@@ -238,14 +217,14 @@
     document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
     document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
     document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
-    document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
+
 
 
     //functions
     function update() {
       income = Math.floor(population/5);
       document.getElementById("money_display").innerHTML = "money: "+money;
-      document.getElementById("name").innerHTML = name + " - " + money;
+      
       document.getElementById("income_display").innerHTML = "income from taxes: " + income;
       document.getElementById("pop_display").innerHTML = "population: " + population;
       document.getElementById("mansions").innerHTML = "mansions: " + mansions;
@@ -255,7 +234,7 @@
       document.getElementById("large_apartments").innerHTML = "large apartments: " + large_apartments;
       document.getElementById("mega_apartments").innerHTML = "mega apartments: " + mega_apartments;
       document.getElementById("skyscrapers").innerHTML = "skyscrapers: " + skyscrapers;
-      document.getElementById("elementry_schools").innerHTML = "Elementry schools: " + elementry_schools;
+      
     }
 
     function earn() {
@@ -264,16 +243,6 @@
       
     }
 
-    function give() {
-      var give = prompt("enter money value");
-      if (give == "") {
-       give = 0; 
-      }  
-      give = parseInt(give)
-      money = money + give;
-      update();
-      //<button id="test">give money</button>
-    }
 
     function add_house() {
       if (money > 499) {
@@ -544,26 +513,7 @@
       update();
     }
 
-    function build_elemetry_school() {
-      if (money > 249999) {
-      elementry_schools = elementry_schools + 1;
-      money = money - 250000;
-      population = Math.floor((population * 125)/100);
-      update();
-      }
-    }
-    else{
-     window.alert("You need " + (250000 - money) + " more money to build an elemetry school!"); 
-    }  
     
-    function remove_elementry_school() {
-      if (elementry_schools == 0) {
-        elementry_schools elementry_schools - 1;
-        money = money + 250000;
-        population = (population * 100)/125;
-      }
-    } 
-
   </script>
 
   
