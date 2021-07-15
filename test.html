@@ -11,8 +11,8 @@
       background-color: #f9f9f9;
       min-width: 250px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;  
+      padding: 5px 5px;
+      z-index: 5;  
     }
 
     .dropdown-content {
@@ -32,19 +32,20 @@
     .button1:hover .homes{
       display: block;
     } 
-    .button2:hover .schools{
-      display: block;
-    }
+    
+    .dropdown-content {
+      text-align: left;
+    }  
 
   </style>
   <style>
     .container{
      text-align: center;
     }
-
-    .dropdown-content {
-      text-align: left;
-    }  
+    #upgrade-buttons{min-width: 100px;}
+    #money_button{min-width: 100px;}
+       
+    
 
   </style>  
   <head>
@@ -74,11 +75,11 @@
 
       <br>
       <div class="dropdown">
-        <button id="upgrade buttons">uppgrades</button>
+        <button id="upgrade-buttons">uppgrades</button>
         <div class="dropdown-content">
           <div class="button1">
 
-          <button>homes</button>
+          <button id="homes" >homes</button>
           <div class="homes">
           
             <div class="house">
@@ -89,10 +90,10 @@
             </div>
 
             <div class="mansion">
-            <button id="add_mansion">+</button>
-            <button id="remove_mansion">-</button>
-            <button id="max_mansion">max</button>
-            <label id="mansions"></label>
+            <button class="hs" id="add_mansion">+</button>
+            <button class="hs"id="remove_mansion">-</button>
+            <button class="hs"id="max_mansion">max</button>
+            <label class="hs"id="mansions"></label>
             </div>
             
             <div class="small_apartments">
