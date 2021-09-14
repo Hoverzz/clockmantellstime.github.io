@@ -32,7 +32,7 @@
             
             let stats = {
                 
-                money: 110000,
+                money: 0,
                 upgrade: 1,
 
                 printer: 0,
@@ -241,8 +241,11 @@
             }
 
             function start() {
-                document.getElementById("game").style.visibility = "visible";
-                document.getElementById("start").style.visibility = "hidden";
+                if (confirm("Are you sure?")) {
+                    document.getElementById("game").style.visibility = "visible";
+                    document.getElementById("start").style.visibility = "hidden";
+                }
+               
             }
 
             function ez() {
@@ -367,7 +370,7 @@
             </div>
             <div class="start" id="start">
                 <p>EZ Money</p>
-                <button onclick="start()">start!</button>
+                <button onclick="start()" id="start1">start!</button>
             </div>
         </div>
     </body>
