@@ -252,7 +252,7 @@
                 if (stats.has && document.getElementById("ez1").innerHTML != "on") {
                         t = setInterval(function(){if(stats.money >= 1000){stats.upgrade++;stats.money = stats.money - 1000;} },1); 
                         document.getElementById("ez1").innerHTML = "on";
-                        setTimeout(function() {clearInterval(t); document.getElementById("ez1").innerHTML = "buy";},10000);
+                        setTimeout(function() {clearInterval(t); document.getElementById("ez1").innerHTML = "buy";},60000);
                         stats.has = false;
           
                 }
@@ -277,7 +277,7 @@
                 if (stats.has1) {
                     var x = setInterval(function() {change("money",stats.upgrade)},1);
                     document.getElementById("ez2").innerHTML = "on";
-                    setTimeout(function() {clearInterval(x); document.getElementById("ez2").innerHTML = "buy";},10000);
+                    setTimeout(function() {clearInterval(x); document.getElementById("ez2").innerHTML = "buy";},60000);
                     stats.has1 = false;
                 }
                 else{
