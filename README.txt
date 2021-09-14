@@ -1,4 +1,4 @@
-To play the current version of city clicker, go to:
+To play the game:
 https://clockmantellstime.github.io/EZ-money/
 
 
