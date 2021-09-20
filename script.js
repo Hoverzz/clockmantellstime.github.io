@@ -28,6 +28,19 @@ document.addEventListener("keyup", function(event) {
                 mk4: 0,
                 mk5: 0,
 
+                mk1Lvl: 1,
+                mk2Lvl: 1,
+                mk3Lvl: 1,
+                mk4Lvl: 1,
+                mk5Lvl: 1,                
+                
+                earnPrinter: 5,
+                earnMk1: 10000,
+                earnMk2: 500000,
+                earnMk3: 5000000,
+                earnMk4: 2500000000,
+                earnMk5: 50000000000,
+
                 has: false,
                 has1: false,
 
@@ -50,35 +63,25 @@ document.addEventListener("keyup", function(event) {
                 has1: 100000
             }
             
-            let earn = {
-               printer: 5,
-               
-               mk1: 10000,
-               mk2: 500000,
-               mk3: 5000000,
-               mk4: 2500000000,
-               mk5: 50000000000,
-            }    
-            
             let automations = {
                 mk1: setInterval(function(){
-                    change("money",stats.mk1 * earn.mk1)
+                    change("money",stats.mk1 * stats.earnMk1)
                 },1000),
                 mk2: setInterval(function(){
-                    change("money",stats.mk2 *earn.mk2)
-                },100),
+                    change("money",stats.mk2 *stats.earnMk2)
+                },1000),
                 mk3: setInterval(function(){
-                    change("money",stats.mk3 * earn.mk3)
-                },10),
+                    change("money",stats.mk3 * stats.earnMk3)
+                },1000),
                 mk4: setInterval(function(){
-                    change("money",stats.mk4 * earn.mk4)
-                },1),
+                    change("money",stats.mk4 * stats.earnMk4)
+                },1000),
                 mk5: setInterval(function(){
-                    change("money",stats.mk5 * earn.mk5)
-                },.01),
+                    change("money",stats.mk5 * stats.earnMk5)
+                },1000),
 
                 printer: setInterval(function(){
-                    change("money",stats.printer * earn.printer)
+                    change("money",stats.printer * stats.earnPrinter)
                 },1000),
                 
                 builder: setInterval(function() {
@@ -212,7 +215,7 @@ document.addEventListener("keyup", function(event) {
             }
 
             function reload() {
-                document.getElementById("moneyDisplay").innerHTML = "$" + stats.money;
+                document.getElementById("moneyDisplay").innerHTML = "$"+stats.money;
                 document.getElementById("printerDisplay").innerHTML = "Money printers: " + stats.printer;
                 document.getElementById("builderDisplay").innerHTML = "Builders: " + stats.builder;
                 document.getElementById("managerDisplay").innerHTML = "Managers: " + stats.manager;
@@ -221,22 +224,21 @@ document.addEventListener("keyup", function(event) {
                 document.getElementById("mk3Display").innerHTML = "mk3 factories: " + stats.mk3;
                 document.getElementById("mk4Display").innerHTML = "mk4 factories: " + stats.mk4;
                 document.getElementById("mk5Display").innerHTML = "mk5 factories: " + stats.mk5;
-                document.getElementById("upgradeDisplay").innerHTML = stats.upgrade;
-            }
-            
-            function load() {
-                document.getElementById("upgrade").innerHTML = "Upgrade printer, costs $" + prices.upgrade + "!"
-                document.getElementById("printer").innerHTML = "Money printer: Someone who prints $"+earn.printer+" every second, costs " + prices.printer + "!";
+                document.getElementById("upgradeDisplay").innerHTML = "Upgrade printer, costs $" + prices.upgrade + "! You have " + stats.upgrade;
+                document.getElementById("printer").innerHTML = "Money printer: Someone who prints $"+stats.earnPrinter+" every second, costs " + prices.printer + "!";
                 document.getElementById("builder").innerHTML = "Builder: Someone who automaticly builds factories if you have enough money for them every 15 seconds, costs " + prices.builder + "!";
                 document.getElementById("manager").innerHTML = "Manager: Someone who automaticly hires printers and builders every minute if you can, costs " + prices.manager + "!";   
-                document.getElementById("mk1").innerHTML = "Mk1 factory: A basic factory that prints $"+earn.mk1+" every second, costs " + prices.mk1 + "!";
-                document.getElementById("mk2").innerHTML = "Mk2 factory: a factory that can print $"+earn.mk2+" every second, costs " + prices.mk2 + "!"; 
-                document.getElementById("mk3").innerHTML = "Mk3 factory: a slightly advanced factory that can print $"+earn.mk3+" every second, costs " + prices.mk3 + "!";
-                document.getElementById("mk4").innerHTML = "Mk4 factory: an advanced factory that can produce $"+earn.mk4+" every second, costs a whopping " + prices.mk4 + "!";
+                document.getElementById("mk1").innerHTML = "Mk1 factory: A basic factory that prints $"+stats.earnMk1+" every second, costs " + prices.mk1 + "!";
+                document.getElementById("mk2").innerHTML = "Mk2 factory: a factory that can print $"+stats.earnMk2+" every second, costs " + prices.mk2 + "!"; 
+                document.getElementById("mk3").innerHTML = "Mk3 factory: a slightly advanced factory that can print $"+stats.earnMk3+" every second, costs " + prices.mk3 + "!";
+                document.getElementById("mk4").innerHTML = "Mk4 factory: an advanced factory that can produce $"+stats.earnMk4+" every second, costs a whopping " + prices.mk4 + "!";
                 document.getElementById("mk5").innerHTML = "Mk5 factory: solve all your money problems with this factory!";
-                reload()
-      
-            }
+                document.getElementById("upgradeMk1").innerHTML = "&uarr;";
+                document.getElementById("upgradeMk2").innerHTML = "&uarr;";
+                document.getElementById("upgradeMk3").innerHTML = "&uarr;";
+                document.getElementById("upgradeMk4").innerHTML = "&uarr;";
+                document.getElementById("upgradeMk5").innerHTML = "&uarr;";
+            }     
 
             function start() {
                 if (confirm("Are you sure?")) {
@@ -247,17 +249,18 @@ document.addEventListener("keyup", function(event) {
             }
 
             function ez() {
-                if (stats.has && document.getElementById("ez1").innerHTML != "on") {
+                if (stats.has && document.getElementById("ez1").innerHTML === "buy") {
                         t = setInterval(function(){if(stats.money >= 1000){stats.upgrade++;stats.money = stats.money - 1000;} },1); 
                         document.getElementById("ez1").innerHTML = "on";
-                        setTimeout(function() {clearInterval(t); document.getElementById("ez1").innerHTML = "buy";},60000);
                         stats.has = false;
+                        setTimeout(function() {clearInterval(t); document.getElementById("ez1").innerHTML = "buy";},60000);
+                        
           
                 }
                 else{
-                    if (stats.money >= prices.has) {
+                    if (stats.money >= prices.has&& document.getElementById("ez1").innerHTML === "buy") {
                         
-                        if (confirm("Do you want to but this for $" +prices.has + "? lasts for 60 seconds")) {
+                        if (confirm("Do you want to but this for $" +prices.has + "? lasts for 60 seconds")  ) {
                             stats.has = true;
                             stats.money -= prices.has;
                         }
@@ -266,21 +269,22 @@ document.addEventListener("keyup", function(event) {
                         }
                     }
                     else{
-                        window.alert("You need to buy it for $" + prices.has);
+                        window.alert("You need to buy it for $" + prices.has+ " or you already have it on");
                     }
                 }
             }
             
             function ez1() {
                 
-                if (stats.has1 && document.getElementById("ez2").innerHTML != "on")  {
+                if (stats.has1 && document.getElementById("ez2").innerHTML === "buy")  {
                     var x = setInterval(function() {change("money",stats.upgrade)},1);
                     document.getElementById("ez2").innerHTML = "on";
-                    setTimeout(function() {clearInterval(x); document.getElementById("ez2").innerHTML = "buy";},60000);
                     stats.has1 = false;
+                    setTimeout(function() {clearInterval(x); document.getElementById("ez2").innerHTML = "buy";},60000);
+                    
                 }
                 else{
-                    if (stats.money >= prices.has1) {
+                    if (stats.money >= prices.has1 && document.getElementById("ez2").innerHTML === "buy") {
                     
                         if (confirm("Do you want to but this for $" +prices.has + "? lasts for 60 seconds")) {
                             stats.has1 = true;
@@ -291,7 +295,7 @@ document.addEventListener("keyup", function(event) {
                         }
                     }
                     else{
-                        window.alert("You need to buy it for $" + prices.has1);
+                        window.alert("You need to buy it for $" + prices.has1 + " or you already have it on");
                     }
                 }
             }
@@ -299,5 +303,16 @@ document.addEventListener("keyup", function(event) {
             function lol() {
                 if (stats.money >= 1000) {
                     upgrade();
+                }
+            }
+
+            function levelUp(thing) {
+                if (stats.money >= (prices[thing] * 10)) {
+                    change((thing+"Lvl"),stats["earn"+(thing.charAt(0).toUpperCase()+thing.charAt(1) +  thing.charAt(2))]/2);
+                    change(thing+"Lvl",1);
+                    change("money",-(prices[thing] * 10));
+                }
+                else{
+                    window.alert("d")
                 }
             }
