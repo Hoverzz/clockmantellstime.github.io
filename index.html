@@ -121,43 +121,17 @@
                 },1000),
                 
                 builder: setInterval(function() {
-                    if(stats.money >= prices.mk1){
-                        if (stats.money/prices.mk1 >= stats.builder) {
-                            change("mk1",stats.builder);
-                            change("money",-(stats.builder * prices.mk1));
+                    if(stats.money >= prices.mk5){
+                        if (stats.money/prices.mk5 >= stats.builder) {
+                            change("mk5",stats.builder);
+                            change("money",-(stats.builder * prices.mk5));
                         }
                         else{
-                            change("mk1",Math.floor(stats.money/prices.mk1));
-                            change("money",-(Math.floor(stats.money/prices.mk1)*prices.mk1));
-                        }
-                    
-                    }  
-                    if(stats.money >= prices.mk2){
-                            if (stats.money/prices.mk2 >= stats.builder) {
-                                change("mk2",stats.builder);
-                                change("money",-(stats.builder * prices.mk2));
-                            }
-                            else{
-                                change("mk2",Math.floor(stats.money/prices.mk2));
-                                change("money",-(Math.floor(stats.money/prices.mk2)*prices.mk2));
-                            }
-                            
-                        } 
-    
-    
-                    if(stats.money >= prices.mk3){
-                        if (stats.money/prices.mk3 >= stats.builder) {
-                            change("mk3",stats.builder);
-                            change("money",-(stats.builder * prices.mk3));
-                        }
-                        else{
-                            change("mk3",Math.floor(stats.money/prices.mk3));
-                            change("money",-(Math.floor(stats.money/prices.mk3)*prices.mk3));
+                            change("mk5",Math.floor(stats.money/prices.mk5));
+                            change("money",-(Math.floor(stats.money/prices.mk5)*prices.mk5));
                         }
                         
                     }
-                    
-    
                     if(stats.money >= prices.mk4){
                         if (stats.money/prices.mk4 >= stats.builder) {
                             change("mk4",stats.builder);
@@ -169,19 +143,49 @@
                         }
                         
                     }  
-                    
-    
-                    if(stats.money >= prices.mk5){
-                        if (stats.money/prices.mk5 >= stats.builder) {
-                            change("mk5",stats.builder);
-                            change("money",-(stats.builder * prices.mk5));
+                    if(stats.money >= prices.mk3){
+                        if (stats.money/prices.mk3 >= stats.builder) {
+                            change("mk3",stats.builder);
+                            change("money",-(stats.builder * prices.mk3));
                         }
                         else{
-                            change("mk5",Math.floor(stats.money/prices.mk5));
-                            change("money",-(Math.floor(stats.money/prices.mk5)*prices.mk5));
+                            change("mk3",Math.floor(stats.money/prices.mk3));
+                            change("money",-(Math.floor(stats.money/prices.mk3)*prices.mk3));
                         }
                         
+                    }
+                    if(stats.money >= prices.mk2){
+                            if (stats.money/prices.mk2 >= stats.builder) {
+                                change("mk2",stats.builder);
+                                change("money",-(stats.builder * prices.mk2));
+                            }
+                            else{
+                                change("mk2",Math.floor(stats.money/prices.mk2));
+                                change("money",-(Math.floor(stats.money/prices.mk2)*prices.mk2));
+                            }
+                            
+                    } 
+                    if(stats.money >= prices.mk1){
+                        if (stats.money/prices.mk1 >= stats.builder) {
+                            change("mk1",stats.builder);
+                            change("money",-(stats.builder * prices.mk1));
+                        }
+                        else{
+                            change("mk1",Math.floor(stats.money/prices.mk1));
+                            change("money",-(Math.floor(stats.money/prices.mk1)*prices.mk1));
+                        }
+                    
                     }  
+                    
+    
+    
+                    
+                    
+    
+                    
+                    
+    
+                      
                         
                 },15000),
                 
@@ -426,6 +430,7 @@
                     loadGame();
                 }   
             }
+
             
 
             
