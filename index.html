@@ -175,18 +175,7 @@
                             change("money",-(Math.floor(stats.money/prices.mk1)*prices.mk1));
                         }
                     
-                    }  
-                    
-    
-    
-                    
-                    
-    
-                    
-                    
-    
-                      
-                        
+                    }         
                 },15000),
                 
                 manager: setInterval(function(){
@@ -248,6 +237,7 @@
                 if (stats.money >= prices.upgrade) {
                     stats.upgrade ++;
                     stats.money -= prices.upgrade;
+                    reload();
                 }
                 else {
                     window.alert("You need " + (prices.upgrade-stats.money) + " more money to do this!")
@@ -273,11 +263,11 @@
                 document.getElementById("mk3").innerHTML = "Mk3 factory: a slightly advanced factory that can print $"+stats.mk3Earn+" every second, costs " + prices.mk3 + "!";
                 document.getElementById("mk4").innerHTML = "Mk4 factory: an advanced factory that can produce $"+stats.mk4Earn+" every second, costs a whopping " + prices.mk4 + "!";
                 document.getElementById("mk5").innerHTML = "Mk5 factory: solve all your money problems with this factory!";
-                document.getElementById("upgradeMk1").innerHTML = "&uarr;";
-                document.getElementById("upgradeMk2").innerHTML = "&uarr;";
-                document.getElementById("upgradeMk3").innerHTML = "&uarr;";
-                document.getElementById("upgradeMk4").innerHTML = "&uarr;";
-                document.getElementById("upgradeMk5").innerHTML = "&uarr;";
+                document.getElementById("mk1Upgrade").innerHTML = "&uarr;";
+                document.getElementById("mk2Upgrade").innerHTML = "&uarr;";
+                document.getElementById("mk3Upgrade").innerHTML = "&uarr;";
+                document.getElementById("mk4Upgrade").innerHTML = "&uarr;";
+                document.getElementById("mk5Upgrade").innerHTML = "&uarr;";
             }     
             function ez() {
                 if (stats.has && document.getElementById("ez1").innerHTML === "buy") {
@@ -339,10 +329,16 @@
 
             function levelUp(thing) {
                 if (stats.money >= (prices[thing]*10)){
-                    stats[thing+"Lvl"] += 1;
-                    change("money",-(prices[thing]*10))
-                    stats[thing+"Earn"] *= 1.5;
-                    reload();
+                    if (stats[thing+"Lvl"] == 6) {
+                        window.alert("Your factory is at max level!")
+                        document.getElementById(thing+"Upgrade").parentNode.removeChild(document.getElementById(thing+"Upgrade"));
+                    }
+                    else{
+                        stats[thing+"Lvl"] += 1;
+                        change("money",-(prices[thing]*10))
+                        stats[thing+"Earn"] *= 1.5;
+                        reload();
+                    }
                 }  
                 else{
                     window.alert("You need " + ((prices[thing]*10)-stats.money + " to do this!"));
@@ -474,31 +470,31 @@
                         </div>
                         <br>
                         <div class="mk1">
-                            <button id="upgradeMk1" onclick="levelUp('mk1')"></button>
+                            <button id="mk1Upgrade" onclick="levelUp('mk1')"></button>
                             <button id="buildMk1" onclick="hire('mk1')">Build</button>
                             <label id="mk1"></label>
                             <label id="mk1Display"></label>
                         </div>
                         <div class="mk2">
-                            <button id="upgradeMk2" onclick="levelUp('mk2')"></button>
+                            <button id="mk2Upgrade" onclick="levelUp('mk2')"></button>
                             <button id="buildMk2" onclick="hire('mk2')">Build</button>
                             <label id="mk2"></label>
                             <label id="mk2Display"></label>
                         </div>
                         <div class="mk3">
-                            <button id="upgradeMk3" onclick="levelUp('mk3')"></button>
+                            <button id="mk3Upgrade" onclick="levelUp('mk3')"></button>
                             <button id="buildMk3" onclick="hire('mk3')">Build</button>
                             <label id="mk3"></label>
                             <label id="mk3Display"></label>
                         </div>
                         <div class="mk4">
-                            <button id="upgradeMk4" onclick="levelUp('mk4')"></button>
+                            <button id="mk4Upgrade" onclick="levelUp('mk4')"></button>
                             <button id="buildMk4" onclick="hire('mk4')">Build</button>
                             <label id="mk4"></label>
                             <label id="mk4Display"></label>
                         </div>
                         <div class="mk5">
-                            <button id="upgradeMk5" onclick="levelUp('mk5')"></button>
+                            <button id="mk5Upgrade" onclick="levelUp('mk5')"></button>
                             <button id="buildMk5" onclick="hire('mk5')">Build</button>
                             <label id="mk5"></label>
                             <label id="mk5Display"></label>
