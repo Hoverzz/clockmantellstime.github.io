@@ -3,8 +3,48 @@
     <head>
         <title id="title">EZ Money</title>
         <style>
+            .author{
+                color: white;
+                position: relative;
+                top: -350px;
+                right: 550px;
+            }
+            .author:hover{
+                color: grey;
+                cursor: not-allowed;
+            }
+            body{
+                background-color: black;
+            }
+            .prsTstrt{
+                position: relative;
+                top: 75px;
+                height: 35px;
+                width: 100px;
+                border-radius: 25px;
+                background-color: #fff;
+                color: #000;
+                font-style: normal;
+                text-align: justify;
+                text-decoration: none;
+                text-align: center;
+                cursor:pointer;
+                border: white;
+            }
+            .upgradeButton{
+                border-width: 1px;
+                position: absolute;
+                left: 595px;
+            }
+            .prsTstrt:hover {
+                background-color: gray;
+                transition: .2s;
+            }
+
             .start{
-                font-size: 100px;
+                
+                position: relative;
+                top: 100px;
                 
             }
 
@@ -15,31 +55,55 @@
             .game{
                 visibility: hidden;
             }
+            .text-block-2{
+                color: white;
+                font-family: Georgia, Times, 'Times New Roman', serif;
+                font-size: 14px;
+                line-height: 10px;
+                font-weight: 700;
+            }
             
             .upgrades {
+                position:absolute;
+                top: 85px;
                 display: none;
                 text-align: left;
                 background-color: #c7c7c7;
-                min-width: 160px;
+                width: 100%;
+                left: 0px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 1;
-                min-width: 100px;
+                
+                
             }
-
+            .upgrade{
+                background-color: red;
+                width: 100px;
+            }
             .upgrade:hover .upgrades{
                 display: block;  
+            }
+            .text-block{
+                color: white;
+                opacity: 1;
+                font-size: 175px;
+                line-height: 100px;
+                cursor: auto;
             }
 
         </style>
         <script>
+
             
             document.addEventListener("keyup", function(event) {
                 if (event.keyCode === 49) {
                     upgrade();
                 }
                 if (event.keyCode === 83) {
-                    saveGame();
-                    window.alert("Game has been saved!");
+                    if (document.getElementById("game").style.visibility === "visible"){
+                        saveGame();
+                        window.alert("Game has been saved!");
+                    }
                 }
                 if (event.keyCode === 82) {
                     resetGame();
@@ -178,6 +242,8 @@
                     }         
                 },15000),
                 
+                
+                
                 manager: setInterval(function(){
                     if(stats.money >= prices.manager){
                         if (stats.money/prices.manager >= stats.manager) {
@@ -229,7 +295,7 @@
                     
                 }
                 else{
-                    window.alert("You need " + (prices[thing]- stats.money) + " more money!");
+                    window.alert("You need " + num2txt(prices[thing]- stats.money) + " more money!");
                 }
             }
 
@@ -240,35 +306,64 @@
                     reload();
                 }
                 else {
-                    window.alert("You need " + (prices.upgrade-stats.money) + " more money to do this!")
+                    window.alert("You need " + (num2txt(prices.upgrade-stats.money)) + " more money to do this!")
                 }
             }
+            
+            function num2txt(num) {
+                const suffixes = ["k"," million"," billion"," trillion"," quadrillion"," quintillion"," sextillion"," septillion", " octillion"," nontillion"," dectillion"];
+                let n = String(num);
+                let txt = 0
+                
+                if (num > 999) {
+                    if ((n.length-1) % 3 === 0) {
+                        let first = n.charAt(0);
+                        let suffix = suffixes[((n.length-1)/3)-1]
+                        txt = first + suffix
+                    }
+                    if ((n.length-2) % 3 === 0) {
+                        let first = n.charAt(0);
+                        let second = n.charAt(1)
+                        let suffix = suffixes[((n.length-2)/3)-1]
+                        txt = first +second+ suffix
+                    }
+                    if ((n.length-3) % 3 === 0) {
+                        let first = n.charAt(0);
+                        let second = n.charAt(1)
+                        let third = n.charAt(2)
+                        let suffix = suffixes[((n.length-3)/3)-1]
+                        txt = first +second+ third+ suffix
+                    }
+                }
+                else{
+                    return num
+                }
+                
+                
+                return txt
+            } 
 
             function reload() {
-                document.getElementById("moneyDisplay").innerHTML = "$"+stats.money;
-                document.getElementById("printerDisplay").innerHTML = "Money printers: " + stats.printer;
-                document.getElementById("builderDisplay").innerHTML = "Builders: " + stats.builder;
-                document.getElementById("managerDisplay").innerHTML = "Managers: " + stats.manager;
-                document.getElementById("mk1Display").innerHTML = "mk1 factories: " + stats.mk1;
-                document.getElementById("mk2Display").innerHTML = "mk2 factories: " + stats.mk2;
-                document.getElementById("mk3Display").innerHTML = "mk3 factories: " + stats.mk3;
-                document.getElementById("mk4Display").innerHTML = "mk4 factories: " + stats.mk4;
-                document.getElementById("mk5Display").innerHTML = "mk5 factories: " + stats.mk5;
-                document.getElementById("upgradeDisplay").innerHTML = "Upgrade printer, costs $" + prices.upgrade + "! Your printer prints $" + stats.upgrade + " at a time";
-                document.getElementById("printer").innerHTML = "Money printer: Someone who prints $"+stats.earnPrinter+" every second, costs " + prices.printer + "!";
-                document.getElementById("builder").innerHTML = "Builder: Someone who automaticly builds factories if you have enough money for them every 15 seconds, costs " + prices.builder + "!";
-                document.getElementById("manager").innerHTML = "Manager: Someone who automaticly hires printers and builders every minute if you can, costs " + prices.manager + "!";   
-                document.getElementById("mk1").innerHTML = "Mk1 factory: A basic factory that prints $"+stats.mk1Earn+" every second, costs " + prices.mk1 + "!";
-                document.getElementById("mk2").innerHTML = "Mk2 factory: a factory that can print $"+stats.mk2Earn+" every second, costs " + prices.mk2 + "!"; 
-                document.getElementById("mk3").innerHTML = "Mk3 factory: a slightly advanced factory that can print $"+stats.mk3Earn+" every second, costs " + prices.mk3 + "!";
-                document.getElementById("mk4").innerHTML = "Mk4 factory: an advanced factory that can produce $"+stats.mk4Earn+" every second, costs a whopping " + prices.mk4 + "!";
-                document.getElementById("mk5").innerHTML = "Mk5 factory: solve all your money problems with this factory!";
-                document.getElementById("mk1Upgrade").innerHTML = "&uarr;";
-                document.getElementById("mk2Upgrade").innerHTML = "&uarr;";
-                document.getElementById("mk3Upgrade").innerHTML = "&uarr;";
-                document.getElementById("mk4Upgrade").innerHTML = "&uarr;";
-                document.getElementById("mk5Upgrade").innerHTML = "&uarr;";
+                document.getElementById("moneyDisplay").innerHTML = "$"+num2txt(stats.money);
+                document.getElementById("printerDisplay").innerHTML = "Money printers: " + num2txt(stats.printer);
+                document.getElementById("builderDisplay").innerHTML = "Builders: " + num2txt(stats.builder);
+                document.getElementById("managerDisplay").innerHTML = "Managers: " + num2txt(stats.manager);
+                document.getElementById("mk1Display").innerHTML = "mk1 factories: " + num2txt(stats.mk1);
+                document.getElementById("mk2Display").innerHTML = "mk2 factories: " + num2txt(stats.mk2);
+                document.getElementById("mk3Display").innerHTML = "mk3 factories: " + num2txt(stats.mk3);
+                document.getElementById("mk4Display").innerHTML = "mk4 factories: " + num2txt(stats.mk4);
+                document.getElementById("mk5Display").innerHTML = "mk5 factories: " + num2txt(stats.mk5);
+                document.getElementById("upgradeDisplay").innerHTML = "Upgrade printer, costs $" + num2txt(prices.upgrade) + "! Your printer prints $" + num2txt(stats.upgrade) + " at a time";
+                document.getElementById("printer").innerHTML = "Money printer: Someone who prints $"+num2txt(stats.earnPrinter)+" every second, costs " + num2txt(prices.printer) + "!";
+                document.getElementById("builder").innerHTML = "Builder: Someone who automaticly builds factories if you have enough money for them every 15 seconds, costs " + num2txt(prices.builder) + "!";
+                document.getElementById("manager").innerHTML = "Manager: Someone who automaticly hires printers and builders every minute if you can, costs " + num2txt(prices.manager) + "!";   
+                document.getElementById("mk1").innerHTML = "Mk1 factory: A basic factory that prints $"+num2txt(stats.mk1Earn)+" every second, costs " + num2txt(prices.mk1) + "!";
+                document.getElementById("mk2").innerHTML = "Mk2 factory: a factory that can print $"+num2txt(stats.mk2Earn)+" every second, costs " + num2txt(prices.mk2) + "!"; 
+                document.getElementById("mk3").innerHTML = "Mk3 factory: a slightly advanced factory that can print $"+num2txt(stats.mk3Earn)+" every second, costs " + num2txt(prices.mk3) + "!";
+                document.getElementById("mk4").innerHTML = "Mk4 factory: an advanced factory that can produce $"+num2txt(stats.mk4Earn)+" every second, costs a whopping " + num2txt(prices.mk4) + "!";
+                document.getElementById("mk5").innerHTML = "Mk5 factory: A super edvanced factory that can print $"+num2txt(stats.mk5Earn) +" every second, but it isn't cheap!";
             }     
+            
             function ez() {
                 if (stats.has && document.getElementById("ez1").innerHTML === "buy") {
                         t = setInterval(function(){if(stats.money >= 1000){stats.upgrade++;stats.money = stats.money - 1000;} },1); 
@@ -281,7 +376,7 @@
                 else{
                     if (stats.money >= prices.has&& document.getElementById("ez1").innerHTML === "buy") {
                         
-                        if (confirm("Do you want to but this for $" +prices.has + "? lasts for 60 seconds")  ) {
+                        if (confirm("Do you want to but this for $" +num2txt(prices.has) + "? lasts for 60 seconds")  ) {
                             stats.has = true;
                             stats.money -= prices.has;
                         }
@@ -290,7 +385,7 @@
                         }
                     }
                     else{
-                        window.alert("You need to buy it for $" + prices.has+ " or you already have it on");
+                        window.alert("You need to buy it for $" + num2txt(prices.has)+ " or you already have it on");
                     }
                 }
             }
@@ -307,7 +402,7 @@
                 else{
                     if (stats.money >= prices.has1 && document.getElementById("ez2").innerHTML === "buy") {
                     
-                        if (confirm("Do you want to but this for $" +prices.has + "? lasts for 60 seconds")) {
+                        if (confirm("Do you want to but this for $" +num2txt(prices.has) + "? lasts for 60 seconds")) {
                             stats.has1 = true;
                             stats.money -= prices.has1;
                         }
@@ -316,7 +411,7 @@
                         }
                     }
                     else{
-                        window.alert("You need to buy it for $" + prices.has1 + " or you already have it on");
+                        window.alert("You need to buy it for $" + num2txt(prices.has1) + " or you already have it on");
                     }
                 }
             }
@@ -336,25 +431,30 @@
                     else{
                         stats[thing+"Lvl"] += 1;
                         change("money",-(prices[thing]*10))
-                        stats[thing+"Earn"] *= 1.5;
+                        stats[thing+"Earn"] = Math.floor(stats[thing+"Earn"] * 1.5);
                         reload();
                     }
                 }  
                 else{
-                    window.alert("You need " + ((prices[thing]*10)-stats.money + " to do this!"));
+                    window.alert("You need " + num2txt((prices[thing]*10)-stats.money) + " to do this!");
                 }
             }
+            
             function start() {
                 if (confirm("Are you sure?")) {
                     document.getElementById("game").style.visibility = "visible";
                     document.getElementById("start").style.visibility = "hidden";
+                    document.getElementById("body").style.backgroundColor = "white";
+                    document.getElementById("start1").style.visibility = "hidden";
                 }
                
             }
 
             function saveGame() {
+                 
                 localStorage.setItem("stats",JSON.stringify(stats));
             }
+            
             function loadGame() {
                 var data = JSON.parse(localStorage.getItem("stats"));
                 try{
@@ -388,6 +488,7 @@
                     window.alert("no save found!")
                 }
             }           
+            
             function resetGame() {
                 if (confirm("Are you sure you want to reset?")) {
                     let stats = {
@@ -427,12 +528,11 @@
                 }   
             }
 
-            
 
             
         </script>
     </head>
-    <body onload="reload()">
+    <body onload="reload()" id="body">
         <div class="container">
             <div class="game" id="game">
                 <label id="moneyDisplay">money</label>
@@ -440,7 +540,7 @@
                 <br>
                 <button onclick="change('money',stats.upgrade)">Print money!</button>
                 <div class="upgrade">
-                    <button>upgrades</button>
+                    <button class="upgradeButton">&darr; upgrades &darr;</button>
                     <div class="upgrades">
                         <button onclick="upgrade()" id="upgrade">buy</button>
                         <label id="upgradeDisplay"></label>
@@ -470,31 +570,31 @@
                         </div>
                         <br>
                         <div class="mk1">
-                            <button id="mk1Upgrade" onclick="levelUp('mk1')"></button>
+                            <button id="mk1Upgrade" onclick="levelUp('mk1')">&uarr;</button>
                             <button id="buildMk1" onclick="hire('mk1')">Build</button>
                             <label id="mk1"></label>
                             <label id="mk1Display"></label>
                         </div>
                         <div class="mk2">
-                            <button id="mk2Upgrade" onclick="levelUp('mk2')"></button>
+                            <button id="mk2Upgrade" onclick="levelUp('mk2')">&uarr;</button>
                             <button id="buildMk2" onclick="hire('mk2')">Build</button>
                             <label id="mk2"></label>
                             <label id="mk2Display"></label>
                         </div>
                         <div class="mk3">
-                            <button id="mk3Upgrade" onclick="levelUp('mk3')"></button>
+                            <button id="mk3Upgrade" onclick="levelUp('mk3')">&uarr;</button>
                             <button id="buildMk3" onclick="hire('mk3')">Build</button>
                             <label id="mk3"></label>
                             <label id="mk3Display"></label>
                         </div>
                         <div class="mk4">
-                            <button id="mk4Upgrade" onclick="levelUp('mk4')"></button>
+                            <button id="mk4Upgrade" onclick="levelUp('mk4')">&uarr;</button>
                             <button id="buildMk4" onclick="hire('mk4')">Build</button>
                             <label id="mk4"></label>
                             <label id="mk4Display"></label>
                         </div>
                         <div class="mk5">
-                            <button id="mk5Upgrade" onclick="levelUp('mk5')"></button>
+                            <button id="mk5Upgrade" onclick="levelUp('mk5')">&uarr;</button>
                             <button id="buildMk5" onclick="hire('mk5')">Build</button>
                             <label id="mk5"></label>
                             <label id="mk5Display"></label>
@@ -506,9 +606,12 @@
                 </div>
             </div>
             <div class="start" id="start">
-                <p>EZ Money</p>
-                <button onclick="start()" id="start1">start!</button>
+                <div class="text-block" id="display1">EZ Money</div>
+                <p class="text-block-2">A simple game where you can earn some simple money</p>
+                <button onclick="start()" id="start1" class="prsTstrt">start!</button>
+                <p class="author">Owned by shallow games</p>
             </div>
+            
         </div>
     </body>
 </html>
