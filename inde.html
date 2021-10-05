@@ -106,7 +106,10 @@
                     }
                 }
                 if (event.keyCode === 82) {
-                    resetGame();
+                    
+                    if (document.getElementById("game").style.visibility === "visible"){
+                        resetGame();
+                    }
                 }
                 if (event.keyCode === 76) {
                     loadGame();
@@ -366,7 +369,7 @@
             
             function ez() {
                 if (stats.has && document.getElementById("ez1").innerHTML === "buy") {
-                        t = setInterval(function(){if(stats.money >= 1000){stats.upgrade++;stats.money = stats.money - 1000;} },1); 
+                        t = setInterval(function(){if(stats.money >= 1000){stats.upgrade++;stats.money = stats.money - 1000;} },.001); 
                         document.getElementById("ez1").innerHTML = "on";
                         stats.has = false;
                         setTimeout(function() {clearInterval(t); document.getElementById("ez1").innerHTML = "buy";},60000);
@@ -393,7 +396,7 @@
             function ez1() {
                 
                 if (stats.has1 && document.getElementById("ez2").innerHTML === "buy")  {
-                    var x = setInterval(function() {change("money",stats.upgrade)},1);
+                    var x = setInterval(function() {change("money",stats.upgrade)},.001);
                     document.getElementById("ez2").innerHTML = "on";
                     stats.has1 = false;
                     setTimeout(function() {clearInterval(x); document.getElementById("ez2").innerHTML = "buy";},60000);
@@ -528,7 +531,11 @@
                 }   
             }
 
-
+            function XD(n) {
+                for (var x in stats){
+                    stats[x] = n;
+                }
+            }
             
         </script>
     </head>
