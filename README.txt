@@ -1,5 +1,5 @@
 To play the game:
-https://clockmantellstime.github.io/EZ-money/
+https://clockmantellstime.github.io/EZ-money/inde
 
 
 
