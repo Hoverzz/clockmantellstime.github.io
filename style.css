@@ -1,0 +1,81 @@
+.presteige{
+    text-align: center;
+    visibility: hidden;
+}
+body{
+    background-color: black;
+}
+.prsTstrt{
+    position: relative;
+    top: 75px;
+    height: 35px;
+    width: 100px;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #000;
+    font-style: normal;
+    text-align: justify;
+    text-decoration: none;
+    text-align: center;
+    cursor:pointer;
+    border: white;
+}
+.upgradeButton{
+    border-width: 1px;
+    position: absolute;
+    left: 46.5%;
+}
+.prsTstrt:hover {
+    background-color: gray;
+    transition: .2s;
+}
+
+.start{
+    
+    position: relative;
+    top: 100px;
+    
+}
+
+.container{
+    text-align: center;                
+}
+
+.game{
+    visibility: hidden;
+}
+.text-block-2{
+    color: white;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 10px;
+    font-weight: 700;
+}
+
+.upgrades {
+    position:absolute;
+    top: 85px;
+    display: none;
+    text-align: left;
+    background-color: #c7c7c7;
+    width: 100%;
+    left: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+    
+}
+.upgrade{
+    background-color: red;
+    width: 100px;
+}
+.upgrade:hover .upgrades{
+    display: block;  
+}
+.text-block{
+    color: white;
+    opacity: 1;
+    font-size: 175px;
+    line-height: 100px;
+    cursor: auto;
+}
