@@ -92,7 +92,7 @@ body{
     
 }
 .upgrade{
-    background-color: red;
+    background-color: red; 
     width: 100px;
 }
 .upgrade:hover .upgrades{
