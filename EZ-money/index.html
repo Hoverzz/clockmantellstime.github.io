@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html> 
+<html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script src="script.js"></script>
-        <script src="hacks.js"></script>
     </head>
     <body onload="reload()" id="body">
         <title id="title">EZ Money</title>
@@ -76,14 +75,6 @@
                             <label id="mk5"></label>
                             <label id="mk5Display"></label>
                         </div>
-
-                        <div class="presteige">
-                            <br>
-                            <button id="presteige" onclick="prestige()">Prestige</button>
-                        </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -92,7 +83,16 @@
                 <p class="text-block-2">A simple game where you can earn some simple money</p>
                 <button onclick="start()" id="start1" class="prsTstrt">start!</button>
             </div>
-            
+            <div class="difficulty" id="difficulty">
+                <p class="Select">Select difficulty</p>
+                <div class="buttons">
+                    <button id="easy" class="easy" onclick="setDifficulty('easy')">easy</button>
+                    <button id="medium" class="medium" onclick="setDifficulty('medium')" >medium</button>
+                    <button id="hard" class="hard" onclick="setDifficulty('hard')">hard</button>
+                    <button id="insane" class="insane" onclick="setDifficulty('insane')">insane</button>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
