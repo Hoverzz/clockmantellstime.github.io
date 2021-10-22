@@ -397,7 +397,7 @@ function saveGame() {
     if (other.diffiiculty === "hard"){
         localStorage.setItem("hard",JSON.stringify(stats));
     }
-    if (other.diffiiculty === "easy"){
+    if (other.diffiiculty === "insane"){
         localStorage.setItem("insane",JSON.stringify(stats));
     }
 }
