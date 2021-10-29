@@ -1,1 +1,1 @@
-To play EZ money:https://clockmantellstime.github.io/Games/EZ-money/
+To play EZ money:https://clockmantellstime.github.io/Games/EZ-money/play.html
