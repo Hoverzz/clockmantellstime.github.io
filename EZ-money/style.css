@@ -105,3 +105,38 @@ body{
     line-height: 100px;
     cursor: auto;
 }
+@keyframes e {
+    0% { color: red; }
+    25% {color: orange;};
+    50% { color: yellow; }
+    75% {color: green;}
+    100% { color: blue; }
+}  
+@keyframes a {
+    0% { background-color: red; }
+    25% {background-color: orange;};
+    50% { background-color: yellow; }
+    75% {background-color: green;}
+    100% { background-color: blue; }
+} 
+@keyframes sports {
+    0% { color: red; }
+    25% {color: orange;};
+    50% { color: yellow; }
+    75% {color: green;}
+    100% { color: blue; }
+}  
+
+.text-block{
+    color: red;
+    animation: sports 5s 0s infinite alternate none;
+}
+.text-block-2{
+    color: red;
+    animation: e 5s 0s infinite alternate none;
+}
+
+.prsTstrt{
+    color: black;
+    animation: a 5s 0s infinite alternate none;
+}
