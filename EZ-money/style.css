@@ -48,8 +48,7 @@ body{
 }
 .upgradeButton{
     border-width: 1px;
-    position: absolute;
-    left: 46.5%;
+    position: center;
 }
 .prsTstrt:hover {
     background-color: gray;
@@ -91,10 +90,7 @@ body{
     
     
 }
-.upgrade{
-    background-color: red;
-    width: 100px;
-}
+
 .upgrade:hover .upgrades{
     display: block;  
 }
