@@ -1,8 +1,12 @@
+document.addEventListener("keydown",function(event) {
+    if (event.keyCode == 49) {
+        growCrops();
+    }
+    if (event.keyCode == 50) {
+        sellCrops();
+    }
+})
 var game = {
-    ui: {
-        moneyDisplay: document.getElementById("money"),
-        
-    },
     stats: {
         crops: [],
         seeds: [],
@@ -62,7 +66,6 @@ var game = {
     seeds: ["sugarcane","grapes","blackberry","blueberry","raspberry","radish","onions","tomatoes","potatoes","carrots","wheat"],
     growing: false
 }
-
 
 function num2txt(num) {
     const suffixes = ["k"," million", " billion"," trillion","aa","ab","ac","ad","ae","af","ag","ah"];
@@ -132,30 +135,33 @@ function buySeeds(seed) {
             }
         }    
         else {
-            console.log("you are $"+((game.prices.seeds[seed]) - (game.stats.money)) +" short!")
+            window.alert("you are $"+((game.prices.seeds[seed]) - (game.stats.money)) +" short!")
         }
     }
-    console.log(game.stats.seeds)
     document.getElementById("money").innerHTML = "money " + game.stats.money
+    document.getElementById("seeds").innerHTML = "seeds:" + game.stats.seeds
 }
 
 function growCrops() {
     if (game.stats.seeds.length > 0) {
         if (game.growing === false) {
-            console.log("started growing crops")
+            window.alert("started growing crops")
             game.growing = true;
+            var seeds = game.stats.seeds
             setTimeout(function(){  
-                for (var i in game.stats.seeds) {
-                    game.stats.crops.push(game.stats.seeds[i])
+                for (var i in seeds) {
+                    game.stats.crops.push(seeds[i])
                 }
                 game.growing = false;
-                console.log("finished growing crops!")
+                window.alert("finished growing crops!")
+                document.getElementById("crops").innerHTML = "crops:" + game.stats.crops
             },game.stats.GrowingTime)
         }    
     }
     else {
-        console.log("You need to buy some seeds first!")
+        window.alert("You need to buy some seeds first!")
     }
+    
 }
 
 function sellCrops() {
@@ -163,13 +169,13 @@ function sellCrops() {
         game.stats.money += (game.prices.sellPrices[game.stats.crops[i]] * game.stats.multiplier);  
     }
     game.stats.crops = [];
-    console.log(game.stats.money)
     document.getElementById("money").innerHTML = "money " + game.stats.money
+    document.getElementById("crops").innerHTML = "crops:" + game.stats.crops
 }
 
 function buyNewLand(land) {
     if (game.stats.money >= game.prices.land[land]) {
-        console.log("You bought a " + land + "!")
+        window.alert("You bought a " + land + "!")
         if (game.land.indexOf(land) < game.land.indexOf(game.stats.land)) {
             game.growing = false
             game.stats.money -= game.prices.land[land]
@@ -180,26 +186,11 @@ function buyNewLand(land) {
         }
     }
     else {
-        console.log("You need " +  (game.prices.land[land] - game.stats.money) + " more money to do that!")
+        window.alert("You need " +  (game.prices.land[land] - game.stats.money) + " more money to do that!")
     }
     document.getElementById("money").innerHTML = "money " + game.stats.money
 
 }
-
-function prestag() {
-    if (game.stats.money >=  game.prices.prestige) {
-        if (confirm("Are you sure, there is no going back?")) {
-            game.stats.money = 5 + (1 * game.stats.prestiges * 100)
-            game.stats.seeds = []
-            game.stats.crops = []
-            game.stats.land = "garden"
-            game.stats.prestiges += 1
-            game.stats.multiplier = game.stats.prestiges * 100
-            game.prices.prestige *= 10
-        }
-    }
-    else {
-        console.log("Loooooool u r so poor.")
-    }
+function reduceGrowingTime() {
+    ``
 }
-
