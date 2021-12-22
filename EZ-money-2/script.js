@@ -65,6 +65,7 @@ function start() {
         document.getElementById("stats").style.visibility = "visible"
         document.getElementById("buttons").style.visibility = "visible"
         document.getElementById("body").style.backgroundColor = "white";
+        document.getElementById("body").style.animation = "sports 5s 0s infinite alternate none";
         update();
         var child = document.getElementById("startScreen")
         child.parentNode.removeChild(child)
@@ -217,5 +218,4 @@ function reset() {
     }
     
 }
-
 
