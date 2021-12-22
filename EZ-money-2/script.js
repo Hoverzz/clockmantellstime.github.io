@@ -181,7 +181,7 @@ function load() {
         }
     }
 }
-/*
+
 function reset() {
     game = {
         stats: {    
@@ -218,4 +218,4 @@ function reset() {
     
 }
 
-*/
+
