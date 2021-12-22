@@ -1,0 +1,72 @@
+.buttons {
+    position: relative;
+    z-index: 8;
+    visibility: hidden;
+}
+body {
+    background-color: black;
+    font-family: cursive;
+}
+
+.glow, .glow1 {
+font-size: 150px;
+font-family: Georgia, Times, 'Times New Roman', serif;
+color: #fff;
+text-align: center;
+animation: glow 1s ease-in-out infinite alternate;
+}
+
+.glow1{
+    position: relative;
+    top: -100px;
+    font-size: 20px;
+}
+
+@keyframes glow {
+from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+}
+
+to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000;
+}
+}
+
+
+.press2start:hover {
+    background-color: darkgrey;
+}
+
+.startScreen{
+    text-align: center;
+}
+
+button{
+    width: 120px;
+    color: black;
+    background-color: darkgrey;
+    font-size: 12px;
+}
+
+
+.game{
+    visibility: hidden;
+    
+}
+
+.press2start{
+    position: relative;
+    text-align: center;
+    height: 35px;
+    width: 100px;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #000;
+    font-style: normal;
+    text-decoration: none;
+    cursor:pointer;
+    font-size: 20px;
+    border: white;
+}
+
+
