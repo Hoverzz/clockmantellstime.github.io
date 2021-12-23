@@ -15,7 +15,7 @@
         gtag('config', 'G-CDC5V23555');
         </script>
     </head>
-    <body class="this" id="body" onload="navigator.clipboard.writeText('EZ money is cool!');load()">
+    <body class="this" id="body" onload="navigator.clipboard.writeText('EZ money is cool!');load();if(game.stats.StartScreen) {start()}">
         <div class="ad1">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581"
     crossorigin="anonymous"></script>
@@ -46,8 +46,8 @@
         </div>
         <div class="startScreen" id="startScreen">
             <h1 class="glow" id="glow">EZ money 2</h1>
-            <h1 class="glow1" id="glow1">Another simple game where you earn some money</h1>
-            <button class="press2start" id="press2start" onclick="start()">start</button>
+            <h1 id="glow1">Another simple game where you earn some money</h1>
+            <button class="press2start" id="press2start" onclick="if(confirm('Are you sure?')){start()}">start</button>
         </div>
         <div class="stats" id="stats">
             <label id="money" class="money"></label><br>
