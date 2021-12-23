@@ -2,6 +2,10 @@
     visibility: hidden;
     text-align: center;
 }
+button:hover{
+    color: white;
+    background-color: black;
+}
 .stats{
     text-align: center;
 }
@@ -34,11 +38,6 @@ to {
 }
 }
 
-
-.press2start:hover {
-    background-color: darkgrey;
-}
-
 .startScreen{
     position: absolute;
     z-index: 3;
@@ -69,6 +68,14 @@ button{
 }
 
 
+.press2start:hover {
+    background-color: darkgrey;
+    color: black;
+    width: 100px;
+}
+
+
+
 @keyframes sports {
     0% { background-color: red; }
     25% {background-color: orange;};
@@ -81,6 +88,7 @@ button{
 .ad1{
     z-index: 1;
     position: absolute;
+
 }
 .ad2{
     position: absolute;
