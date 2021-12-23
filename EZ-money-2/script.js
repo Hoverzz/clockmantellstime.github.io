@@ -300,5 +300,5 @@ function typeWriter() {
         i++;
         setTimeout(typeWriter, 50);
     }
-}
+} 
 
