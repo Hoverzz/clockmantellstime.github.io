@@ -23,7 +23,6 @@ var game = {
         ultra_power: 0,
         god: 0,
         null: 0,
-        StartScreen: true
     },
     prices: {
         rebirth: 5000,
@@ -38,7 +37,11 @@ var game = {
         god: 1000000
     },
     things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
-    max: 100000000000000000000,
+    controls: {
+        max: 100000000000000000000,
+        StartScreenHidden: false,
+    
+    }
 }
 
 const formatter = new Intl.NumberFormat('en', {
@@ -98,21 +101,21 @@ function start() {
 function upgrade(thing) {
     if (thing == "rebirth") {
         if (game.stats.money >= game.prices.rebirth) {
-            if (game.stats.rebirth >= game.max) {
+            if (game.stats.rebirth >= game.controls.max) {
                 game.stats.rebirth += 1
                 game.stats.money = 0;
                 game.stats.multiplier = 0;
             }
             else {
                 var amount = Math.floor(game.stats.money/game.prices.rebirth);
-                if (amount >= game.max) {
-                    game.stats.rebirth += game.max - game.stats.rebirth
+                if (amount >= game.controls.max) {
+                    game.stats.rebirth += game.controls.max - game.stats.rebirth
                     game.stats.money = 0;
                     game.stats.multiplier = 0;                    
                 }
                 else {
-                    if (amount * (game.stats.super_rebirth + 1) > game.max) {
-                        game.stats.rebirth += game.max - game.stats.rebirth
+                    if (amount * (game.stats.super_rebirth + 1) > game.controls.max) {
+                        game.stats.rebirth += game.controls.max - game.stats.rebirth
                     }
                     else {
                         game.stats.rebirth += amount * (game.stats.super_rebirth + 1)
@@ -127,13 +130,12 @@ function upgrade(thing) {
             window.alert("You need $" + formatter.format(game.prices.rebirth - game.stats.money) + " more to rebirth!")
         }
     }
-    
     else {
         for (var x in game.things) {
             if (game.things[x] == thing) {
                 var OneDown = game.things[x - 1]
                 if (game.things[x] == "god") {
-                    console.log(".")
+                    
                 }
                 else {
                     var OneUp = game.things[x+1];
@@ -141,11 +143,11 @@ function upgrade(thing) {
                 break;
             }
         }
-        if (game.stats[thing] >= game.max) {
+        if (game.stats[thing] >= game.controls.max) {
             game.stats[thing] += 1;
             for (var x in game.things) {
                 if (game.things[x] == thing) {
-                    console.log(".")
+                    
                     break;
                 }
                 else{
@@ -156,20 +158,20 @@ function upgrade(thing) {
         else {
             if (game.stats[OneDown] >= game.prices[thing]) {
                 var amount = Math.floor(game.stats[OneDown]/game.prices[thing]) 
-                if (amount > game.max) {
-                    game.stats[thing] += game.max - game.stats[thing]
+                if (amount > game.controls.max) {
+                    game.stats[thing] += game.controls.max - game.stats[thing]
                 }
                 else {
                     var thiss = game.stats[game.things[game.things.indexOf(thing) + 1]] + 1
-                    if (amount * thiss >= game.max) {
-                        game.stats[thing] += game.max - game.stats[thing]
+                    if (amount * thiss >= game.controls.max) {
+                        game.stats[thing] += game.controls.max - game.stats[thing]
                     }
                     else {
                         game.stats[thing] += amount * thiss
                     }
                     for (var x in game.things) {
                         if (game.things[x] == thing) {
-                            console.log(".")
+                            
                             break;
                         }
                         else{
@@ -192,14 +194,14 @@ function upgrade(thing) {
 
 
 function save() {
-    localStorage.setItem("data",JSON.stringify(game.stats));
+    localStorage.setItem("data",JSON.stringify(game));
 }
 
 function load() {
     var data  = JSON.parse(localStorage.getItem("data"))
     if (typeof data !== "undefined") {
         for (var x in data) {
-            game.stats[x] = data[x]
+            game[x] = data[x]
         }
     }
 }
@@ -235,7 +237,10 @@ function reset() {
     
         },
         things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
-        max: game.max
+        controls: {
+            max: 100000000000000000000,
+            StartScreenHidden: false,
+        }
     }
     
 }
