@@ -14,43 +14,6 @@ body {
     font-family: cursive;
 }
 
-.glow, .glow1 {
-font-size: 150px;
-font-family: Georgia, Times, 'Times New Roman', serif;
-color: #fff;
-text-align: center;
-animation: glow 1s ease-in-out infinite alternate;
-}
-
-.glow1{
-    position: relative;
-    top: -100px;
-    font-size: 20px;
-}
-
-@keyframes glow {
-from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-}
-
-to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000;
-}
-}
-
-.startScreen{
-    position: absolute;
-    z-index: 3;
-    left: 15%;
-    text-align: center;
-}
-
-button{
-    width: 120px;
-    color: black;
-    background-color: darkgrey;
-    font-size: 12px;
-}
 
 .press2start{
     position: relative;
@@ -65,6 +28,50 @@ button{
     cursor:pointer;
     font-size: 20px;
     border: white;
+}
+
+.glow{
+font-size: 150px;
+font-family: Georgia, Times, 'Times New Roman', serif;
+color: #fff;
+text-align: center;
+animation: glow 1s ease-in-out infinite alternate;
+}
+
+
+.glow1{
+    position: relative;
+    top: -100px;
+    font-size: 20px;
+    animation: glow1 1s ease-in-out infinite alternate;
+    color: white;
+    z-index: 1;
+}
+
+@keyframes glow {
+from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+}
+
+to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000;
+}
+}
+
+
+
+.startScreen{
+    position: absolute;
+    z-index: 3;
+    left: 15%;
+    text-align: center;
+}
+
+button{
+    width: 120px;
+    color: black;
+    background-color: darkgrey;
+    font-size: 12px;
 }
 
 
@@ -96,4 +103,8 @@ button{
     right: 0%;
 }
 
-
+.box {
+    position: absolute; 
+    width: 100px;
+    height: 100px;
+}
