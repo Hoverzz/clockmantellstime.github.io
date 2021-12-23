@@ -5,9 +5,50 @@ document.addEventListener("keydown",function(event){
     }
     if (event.keyCode == 191) {
         game.stats.money += (game.stats.multiplier) * ((game.stats.rebirth + game.stats.super_rebirth + game.stats.ultra_rebirth + game.stats.prestige + game.stats.super_prestige + game.stats.ultra_prestige + game.stats.power + game.stats.super_power + game.stats.ultra_power + game.stats.god)+1)
-        wth()
     }
+    if (event.keyCode == 72) {
+        z *= -1
+        if (z === -1) {
+            document.addEventListener("mousemove", function(e) {
+                document.getElementById("box").style.left = e.x - 50 + "px"
+                document.getElementById("box").style.top = e.y  - 50 + "px"
+            })
+        }
+    }  
+    if (event.keyCode == 49) {
+        upgrade("rebirth")
+    }  
+    if (event.keyCode == 50) {
+        upgrade("super_rebirth")
+    }  
+    if (event.keyCode == 51) {
+        upgrade("ultra_rebirth")
+    }  
+    if (event.keyCode == 52) {
+        upgrade("prestige")
+    } 
+    if (event.keyCode == 53) {
+        upgrade("super_prestige")
+    }   
+    if (event.keyCode == 54) {
+        upgrade("ultra_prestige")
+    }  
+    if (event.keyCode == 55) {
+        upgrade("power")
+    }  
+    if (event.keyCode == 56) {
+        upgrade("super_power")
+    }  
+    if (event.keyCode == 57) {
+        upgrade("ultra_power")
+    }  
+    if (event.keyCode == 48) {
+        upgrade("god")
+    }  
 })
+
+var i = 0
+var z = 1
 var game = {
     stats: {    
         money: 0,
@@ -44,34 +85,41 @@ var game = {
     }
 }
 
-const formatter = new Intl.NumberFormat('en', {
-    notation: 'compact'
-})
 
-
-function fix(char) {
-    if (char.includes("_")) {
-        var x = char.replace("_"," ")
+function tidy(char) {
+    if (typeof(char) == "number") {
+    const formatter = new Intl.NumberFormat('en', {
+        notation: 'compact'
+    })
+        char = String(formatter.format(char));
+        return char
     }
+    
+
     else {
-        var x = char;
+        if (char.includes("_")) {
+            var x = char.replace("_"," ")
+        }
+        else {
+            var x = char;
+        }
+        return x
     }
-    return x 
 }
 
 function update() {
-    document.getElementById("money").innerHTML = "money: $" + formatter.format(game.stats.money);
-    document.getElementById("multiplier").innerHTML = "upgrader: " + formatter.format(game.stats.multiplier);
-    document.getElementById("rebirth").innerHTML = "rebirths: " + formatter.format(game.stats.rebirth);
-    document.getElementById("super_rebirth").innerHTML = "super rebirths: " + formatter.format(game.stats.super_rebirth);
-    document.getElementById("ultra_rebirth").innerHTML = "ultra rebirths: " + formatter.format(game.stats.ultra_rebirth);
-    document.getElementById("prestige").innerHTML = "prestiges: " + formatter.format(game.stats.prestige);
-    document.getElementById("super_prestige").innerHTML = "super prestiges: " + formatter.format(game.stats.super_prestige);
-    document.getElementById("ultra_prestige").innerHTML = "ultra prestiges: " + formatter.format(game.stats.ultra_prestige);
-    document.getElementById("power").innerHTML = "power: " + formatter.format(game.stats.power);
-    document.getElementById("super_power").innerHTML = "super power: " + formatter.format(game.stats.super_power);
-    document.getElementById("ultra_power").innerHTML = "ultra power: " + formatter.format(game.stats.ultra_power);
-    document.getElementById("god").innerHTML = "gods: " + formatter.format(game.stats.god);
+    document.getElementById("money").innerHTML = "money: $" + tidy(game.stats.money);
+    document.getElementById("multiplier").innerHTML = "upgrader: " + tidy(game.stats.multiplier);
+    document.getElementById("rebirth").innerHTML = "rebirths: " + tidy(game.stats.rebirth);
+    document.getElementById("super_rebirth").innerHTML = "super rebirths: " + tidy(game.stats.super_rebirth);
+    document.getElementById("ultra_rebirth").innerHTML = "ultra rebirths: " + tidy(game.stats.ultra_rebirth);
+    document.getElementById("prestige").innerHTML = "prestiges: " + tidy(game.stats.prestige);
+    document.getElementById("super_prestige").innerHTML = "super prestiges: " + tidy(game.stats.super_prestige);
+    document.getElementById("ultra_prestige").innerHTML = "ultra prestiges: " + tidy(game.stats.ultra_prestige);
+    document.getElementById("power").innerHTML = "power: " + tidy(game.stats.power);
+    document.getElementById("super_power").innerHTML = "super power: " + tidy(game.stats.super_power);
+    document.getElementById("ultra_power").innerHTML = "ultra power: " + tidy(game.stats.ultra_power);
+    document.getElementById("god").innerHTML = "gods: " + tidy(game.stats.god);
 }
 
 function start() {
@@ -127,7 +175,7 @@ function upgrade(thing) {
             
         }
         else {
-            window.alert("You need $" + formatter.format(game.prices.rebirth - game.stats.money) + " more to rebirth!")
+            window.alert("You need $" + tidy(game.prices.rebirth - game.stats.money) + " more to rebirth!")
         }
     }
     else {
@@ -181,11 +229,11 @@ function upgrade(thing) {
                 }
             }
             else {
-                if (game.prices[thing]-game.stats[OneDown] === 1) {
-                    window.alert("You need " + formatter.format(game.prices[thing]-game.stats[OneDown]) + " more " + fix(OneDown) + " to do this!")
+                if (game.prices[thing]-game.stats[OneDown] === 1 || OneDown.includes("power")) {
+                    window.alert("You need " + tidy(game.prices[thing]-game.stats[OneDown]) + " more " + tidy(OneDown) + " to do this!")
                 }
                 else {
-                    window.alert("You need " + formatter.format(game.prices[thing]-game.stats[OneDown]) + " more " + fix(OneDown) + "s to do this!")
+                    window.alert("You need " + tidy(game.prices[thing]-game.stats[OneDown]) + " more " + tidy(OneDown) + "s to do this!")
                 }  
             }
         }
@@ -244,3 +292,13 @@ function reset() {
     }
     
 }
+
+function typeWriter() {
+    const txt = 'Another simple game where you earn some money';    
+    if (i < txt.length) {
+        document.getElementById("glow1").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+
