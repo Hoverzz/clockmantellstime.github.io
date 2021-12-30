@@ -63,7 +63,6 @@ to {
 .startScreen{
     position: absolute;
     z-index: 3;
-    left: 15%;
     text-align: center;
 }
 
