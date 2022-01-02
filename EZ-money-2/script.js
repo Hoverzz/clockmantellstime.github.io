@@ -1,5 +1,5 @@
 document.addEventListener("keydown",function(event){
-    console.log(event.keyCode)
+    console.log(event.key + " - " + event.keyCode)
     if (event.keyCode == 46) {
         reset();
     }
@@ -47,8 +47,12 @@ document.addEventListener("keydown",function(event){
     }  
 })
 
-var i = 0
-var z = 1
+
+
+var i = 0;
+var r = 0;
+var q = 0;
+var z = 1;
 var game = {
     stats: {    
         money: 0,
@@ -77,33 +81,41 @@ var game = {
         ultra_power: 8000,
         god: 1000000
     },
-    things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
     controls: {
+        backgroundColor: "rgb",
         max: 100000000000000000000,
         StartScreenHidden: false,
-    
-    }
+        
+    },
+    achivements: {
+
+    },
+    things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
 }
 
 
 function tidy(char) {
-    if (typeof(char) == "number") {
-    const formatter = new Intl.NumberFormat('en', {
-        notation: 'compact'
-    })
-        char = String(formatter.format(char));
-        return char
-    }
-    
-
-    else {
-        if (char.includes("_")) {
-            var x = char.replace("_"," ")
+    try {
+        if (typeof(char) == "number") {
+        const formatter = new Intl.NumberFormat('en', {
+            notation: 'compact'
+        })
+            char = String(formatter.format(char));
+            return char
         }
+        
         else {
-            var x = char;
+            if (char.includes("_")) {
+                var x = char.replace("_"," ")
+            }
+            else {
+                var x = char;
+            }
+            return x
         }
-        return x
+    }
+    catch(err) {
+        reset();
     }
 }
 
@@ -122,129 +134,74 @@ function update() {
     document.getElementById("god").innerHTML = "gods: " + tidy(game.stats.god);
 }
 
+function startGame() {
+    navigator.clipboard.writeText('EZ money is cool!');
+    typeWriter()
+    load();
+}
+
 function start() {
     document.getElementById("startScreen").style.visibility = "hidden";
     document.getElementById("stats").style.visibility = "visible"
     document.getElementById("buttons").style.visibility = "visible"
     document.getElementById("body").style.backgroundColor = "white";
-    document.getElementById("body").style.animation = "sports 5s 0s infinite alternate none";
+    document.getElementById("body").className = "thisssss"
     update();
     var child = document.getElementById("startScreen")
     child.parentNode.removeChild(child)
+    
     setInterval(() => {
         game.stats.money += game.stats.multiplier
     }, 100);
     setInterval(() => {
         game.stats.multiplier += (game.stats.rebirth + 1) * (game.stats.god + 1);
     }, 100);
-    
     setInterval(() => {
         update();
     }, 100);
     setInterval(() => {
         save();
     }, 100);
-}
-
-function upgrade(thing) {
-    if (thing == "rebirth") {
-        if (game.stats.money >= game.prices.rebirth) {
-            if (game.stats.rebirth >= game.controls.max) {
-                game.stats.rebirth += 1
-                game.stats.money = 0;
-                game.stats.multiplier = 0;
-            }
-            else {
-                var amount = Math.floor(game.stats.money/game.prices.rebirth);
-                if (amount >= game.controls.max) {
-                    game.stats.rebirth += game.controls.max - game.stats.rebirth
-                    game.stats.money = 0;
-                    game.stats.multiplier = 0;                    
-                }
-                else {
-                    if (amount * (game.stats.super_rebirth + 1) > game.controls.max) {
-                        game.stats.rebirth += game.controls.max - game.stats.rebirth
-                    }
-                    else {
-                        game.stats.rebirth += amount * (game.stats.super_rebirth + 1)
-                    }
-                    game.stats.money = 0;
-                    game.stats.multiplier = 0;
-                }
-            }
-            
-        }
-        else {
-            window.alert("You need $" + tidy(game.prices.rebirth - game.stats.money) + " more to rebirth!")
-        }
+    setInterval(() => {
+        game.stats.rebirth += game.stats.super_rebirth/5;
+    }, 100);  
+    setInterval(() => {
+        game.stats.super_rebirth += game.stats.ultra_rebirth/10;
+    }, 100);
+    setInterval(() => {
+        game.stats.ultra_rebirth += game.stats.prestige/25;
+    }, 100);    
+    setInterval(() => {
+        game.stats.prestige += game.stats.super_prestige/50;
+    }, 100);       
+    setInterval(() => {
+        game.stats.super_prestige += game.stats.ultra_prestige/100;
+    }, 100);   
+    setInterval(() => {
+        game.stats.ultra_prestige += game.stats.power/250;
+    }, 100);   
+    setInterval(() => {
+        game.stats.power += game.stats.super_power/500;
+    }, 100);  
+    setInterval(() => {
+        game.stats.super_power += game.stats.ultra_power/1000;
+    }, 100);    
+    setInterval(() => {
+        game.stats.ultra_power += game.stats.god/1000000;
+    }, 100);
+    
+    
+    if (game.controls.backgroundColor === "rgb") {
+        document.getElementById("body").style.animation = "sports 5s 0s infinite alternate none";
     }
     else {
-        for (var x in game.things) {
-            if (game.things[x] == thing) {
-                var OneDown = game.things[x - 1]
-                if (game.things[x] == "god") {
-                    
-                }
-                else {
-                    var OneUp = game.things[x+1];
-                }
-                break;
-            }
-        }
-        if (game.stats[thing] >= game.controls.max) {
-            game.stats[thing] += 1;
-            for (var x in game.things) {
-                if (game.things[x] == thing) {
-                    
-                    break;
-                }
-                else{
-                    game.stats[game.things[x]] = 0;
-                }
-            }
-        }
-        else {
-            if (game.stats[OneDown] >= game.prices[thing]) {
-                var amount = Math.floor(game.stats[OneDown]/game.prices[thing]) 
-                if (amount > game.controls.max) {
-                    game.stats[thing] += game.controls.max - game.stats[thing]
-                }
-                else {
-                    var thiss = game.stats[game.things[game.things.indexOf(thing) + 1]] + 1
-                    if (amount * thiss >= game.controls.max) {
-                        game.stats[thing] += game.controls.max - game.stats[thing]
-                    }
-                    else {
-                        game.stats[thing] += amount * thiss
-                    }
-                    for (var x in game.things) {
-                        if (game.things[x] == thing) {
-                            
-                            break;
-                        }
-                        else{
-                            game.stats[game.things[x]] = 0;
-                        }
-                    }
-                }
-            }
-            else {
-                if (game.prices[thing]-game.stats[OneDown] === 1 || OneDown.includes("power")) {
-                    window.alert("You need " + tidy(game.prices[thing]-game.stats[OneDown]) + " more " + tidy(OneDown) + " to do this!")
-                }
-                else {
-                    window.alert("You need " + tidy(game.prices[thing]-game.stats[OneDown]) + " more " + tidy(OneDown) + "s to do this!")
-                }  
-            }
-        }
+        document.getElementById("body").style.backgroundColor = game.controls.backgroundColor;
     }
 }
-
 
 function save() {
     localStorage.setItem("data",JSON.stringify(game));
 }
-
 function load() {
     var data  = JSON.parse(localStorage.getItem("data"))
     if (typeof data !== "undefined") {
@@ -253,7 +210,6 @@ function load() {
         }
     }
 }
-
 function reset() {
     game = {
         stats: {    
@@ -284,8 +240,9 @@ function reset() {
             god: 1000000
     
         },
-        things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
+        things: ["multiplier","money","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
         controls: {
+            backgroundColor: "rgb",
             max: 100000000000000000000,
             StartScreenHidden: false,
         }
@@ -294,11 +251,80 @@ function reset() {
 }
 
 function typeWriter() {
-    const txt = 'Another simple game where you earn some money';    
-    if (i < txt.length) {
-        document.getElementById("glow1").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
+    const txt = 'Another simple game where you earn some simple money...';   
+    try { 
+        if (i < txt.length) {
+            document.getElementById("glow1").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+        if (i === txt.length) { 
+            setTimeout(function () {document.getElementById("glow1").innerHTML = " "}, 2500);
+            setTimeout(typeWriter2, 3000);
+        }
     }
-} 
+    catch(err) {
+        game.stats.money += game.stats.multiplier;
+    }
+}
+function typeWriter2() {
+    const txt = 'I hope you enjoy the game!';   
+    try { 
+        if (r < txt.length) {
+            document.getElementById("glow1").innerHTML += txt.charAt(r);
+            r++;
+            setTimeout(typeWriter2, 100);
+        }
+        if (r === txt.length) { 
+            setTimeout(function () {document.getElementById("glow1").innerHTML = " "}, 59500);
+            setTimeout(typeWriter3, 60000);
+        }
+    }
+    catch(err) {
+        game.stats.money += game.stats.multiplier;
+    }
+}
+function typeWriter3() {
+    const txt = '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$';   
+    try { 
+        if (q < txt.length) {
+            document.getElementById("glow1").innerHTML += txt.charAt(q);
+            q++;
+            setTimeout(typeWriter3, 25);
+        }
+    }
+    catch(err) {
+        game.stats.money += game.stats.multiplier;
+    }
+}
 
+function upgrade(thing) {
+    if (game.stats[game.things[game.things.indexOf(thing) - 1]] >= game.prices[thing]) {
+        var amount = Math.floor(game.stats[game.things[game.things.indexOf(thing) - 1]]/game.prices[thing])
+        if (amount > game.controls.max || game.stats[game.things[game.things.indexOf(thing) + 1]] + 1 > game.controls.max || amount * game.stats[game.things[game.things.indexOf(thing) + 1]] + 1 > game.controls.max){
+            game.stats[thing] += game.controls.max - game.stats[thing]
+        }
+        else {
+            game.stats[thing] += amount * (game.stats[game.things[game.things.indexOf(thing) + 1]] + 1)
+        }
+        for (var x in game.things) {
+            if (game.things[x] == thing) {
+                break;
+            }
+            else{
+                game.stats[game.things[x]] = 0;
+            }
+        }
+    }
+    else {
+        if (game.prices[thing]-game.stats[game.things[game.things.indexOf(thing) - 1]] === 1 || game.things[game.things.indexOf(thing) - 1].includes("power")) {
+            window.alert("You need " + tidy(game.prices[thing]-game.stats[game.things[game.things.indexOf(thing) - 1]]) + " more " + tidy(game.things[game.things.indexOf(thing) - 1]) + " to do this!")
+        }
+        else if (game.things[game.things.indexOf(thing) - 1].includes("money")) {
+            window.alert("You need $" + tidy(game.prices[thing]-game.stats[game.things[game.things.indexOf(thing) - 1]]) + " more " + "to do this!")
+        }
+        else {
+            window.alert("You need " + tidy(game.prices[thing]-game.stats[game.things[game.things.indexOf(thing) - 1]]) + " more " + tidy(game.things[game.things.indexOf(thing) - 1]) + "s to do this!")
+        }  
+    }
+}
