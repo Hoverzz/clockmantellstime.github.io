@@ -7,7 +7,6 @@
         <script src="script.js"></script>
         <script src="cheat codes.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -16,9 +15,10 @@
             gtag('config', 'G-CDC5V23555');
         </script>
     </head>
-    <body class="this" id="body" onload="navigator.clipboard.writeText('EZ money is cool!');load();if(game.controls.StartScreenHidden) {start()};typeWriter()">
-        <div class="ad1">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581"
+    <body class="this" id="body" onload="startGame(); if(game.controls.StartScreenHidden) {start()}">
+        <div class="container">
+            <div class="ad1">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581"
     crossorigin="anonymous"></script>
             <!-- Vertical ads -->
             <ins class="adsbygoogle"
@@ -30,26 +30,20 @@
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>
-        <div class="ad2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581" crossorigin="anonymous"></script>
-        <!-- 2 -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-5521437865819581"
-            data-ad-slot="4266014699"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>
-        <div id="box" class="box"></div>    
-        <div class="startScreen" id="startScreen">
-            <h1 class="glow" id="glow">EZ money 2</h1>
-            <h1 id="glow1" class="glow1"></h1>
-            <button class="press2start" id="press2start" onclick="if(confirm('Are you sure?')){start()}">start</button>
-        </div>
+            </div>
+            <div class="ad2">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581" crossorigin="anonymous"></script>
+                <!-- 2 -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-5521437865819581"
+                    data-ad-slot="4266014699"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
             <div class="startScreen" id="startScreen">
                 <h1 class="glow" id="glow">EZ money 2</h1>
                 <p id="glow1" class="glow1"></p>
@@ -82,7 +76,6 @@
                 <button id="ultra_power_" onclick="upgrade('ultra_power')">get ultra power</button><br>
                 <button id="power_" onclick="upgrade('god')">get god</button><br>
             </div>
-            
         </div>
     </body>
 </html>
