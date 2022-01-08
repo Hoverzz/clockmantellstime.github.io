@@ -90,7 +90,7 @@ var game = {
     achivements: {
 
     },
-    things: ["money","multiplier","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
+    things: ["multiplier","money","rebirth","super_rebirth","ultra_rebirth","prestige","super_prestige","ultra_prestige","power","super_power","ultra_power","god","null"],
 }
 
 
