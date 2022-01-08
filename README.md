@@ -3,7 +3,7 @@ Game links:
   <head>
   </head>
   <body>
-    <button>Go to EZ money 0</button><br>
+    <button onclick="window.open('clockmantellstime.github.io/EZ-money-0')">Go to EZ money 0</button><br>
   </body>
 </html>
 
