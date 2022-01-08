@@ -12,7 +12,7 @@
         updates:<br>
         EZ money 0: none planned<br>
         EZ money 1: none planned<br>
-        EZ money 2: customization<br>
+        EZ money 2: customization and softwhere updates<br>
     </body>
 </html>
 
