@@ -1,9 +1,14 @@
 Game links:
+<html>
+  <head>
+  </head>
+    <body>
+        <a href="https://clockmantellstime.github.io/" >EZ money 0</a>
+        <a href="https://clockmantellstime.github.io/" >EZ money</a>
+        <a href="https://clockmantellstime.github.io/" >EZ money 2</a>
 
-EZ money 0: clockmantellstime.github.io/EZ-money-0
+    </body>
+</html>
 
-EZ money: clockmantellstime.github.io/EZ-money
-
-EZ money 2:clockmantellstime.github.io/EZ-money-2
 
 
