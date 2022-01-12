@@ -24,17 +24,6 @@ button{
     background-color: darkgrey;
     font-size: 12px;
 }
-.ad1{
-    z-index: 1;
-    position: absolute;
-
-}
-.ad2{
-    position: absolute;
-    z-index: 2;
-    right: 0%;
-}
-
 
 /* Start screen */
 .startScreen{
@@ -109,4 +98,3 @@ button{
     75% {background-color: green;}
     100% { background-color: blue; }
 }  
- 
