@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>EZ money 2</title>
+        <title id="title">EZ money 2</title>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script src="script.js"></script>
-        <script src="cheat codes.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -13,38 +12,9 @@
     
             gtag('config', 'G-CDC5V23555');
         </script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581"
-     crossorigin="anonymous"></script>
     </head>
-    <body class="this" id="body" onload="startGame(); if(game.controls.StartScreenHidden) {start()}">
+    <body class="this" id="body" onload="startGame();if(mainGame.data.controls.StartScreenHidden) {start()}">
         <div class="container">
-            <div class="ad1">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581"
-    crossorigin="anonymous"></script>
-            <!-- Vertical ads -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-5521437865819581"
-                data-ad-slot="2394653534"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
-            <div class="ad2">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521437865819581" crossorigin="anonymous"></script>
-                <!-- 2 -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-5521437865819581"
-                    data-ad-slot="4266014699"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
             <div class="startScreen" id="startScreen">
                 <h1 class="glow" id="glow">EZ money 2</h1>
                 <p id="glow1" class="glow1"></p>
@@ -52,31 +22,9 @@
             </div>
             <div id="box" class="box"></div>    
             <div class="stats" id="stats">
-                <label id="money" class="money"></label><br>
-                <label id="multiplier" class="multiplier"></label><br>
-                <label id="rebirth" class="rebirth"></label><br>
-                <label id="super_rebirth" class="super_rebirth"></label><br>
-                <label id="ultra_rebirth" class="ultra_rebirth"></label><br>
-                <label id="prestige" class="prestige"></label><br>
-                <label id="super_prestige" class="super_prestige"></label><br>
-                <label id="ultra_prestige" class="ultra_prestige"></label><br>
-                <label id="power" class="power"></label><br>
-                <label id="super_power" class="super_power"></label><br>
-                <label id="ultra_power" class="ultra_power"></label><br>
-                <label id="god" class="god"></label><br>
             </div>
             <div class="buttons" id="buttons">
-                <button id="rebirth_" onclick="upgrade('rebirth')">rebirth</button><br>
-                <button id="super_rebirth_" onclick="upgrade('super_rebirth')">super rebirth</button><br>
-                <button id="ultra_rebirth_" onclick="upgrade('ultra_rebirth')">ultra rebirth</button><br>
-                <button id="prestige_" onclick="upgrade('prestige')">prestige</button><br>
-                <button id="super_prestige_" onclick="upgrade('super_prestige')">super prestige</button><br>
-                <button id="ultra_prestige_" onclick="upgrade('ultra_prestige')">ultra prestige</button><br>
-                <button id="power_" onclick="upgrade('power')">get power</button><br>
-                <button id="super_power_" onclick="upgrade('super_power')">get super power</button><br>
-                <button id="ultra_power_" onclick="upgrade('ultra_power')">get ultra power</button><br>
-                <button id="power_" onclick="upgrade('god')">get god</button><br>
             </div>
-        </div>
+        </div> 
     </body>
 </html>
