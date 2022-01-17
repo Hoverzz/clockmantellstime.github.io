@@ -9,6 +9,9 @@
                 background-color: black;
                 color: white;
             }
+            button:hover {
+                cursor: pointer;
+            }
             .container {
                 position: absolute;
                 left: 10%;
@@ -16,6 +19,7 @@
             .links,.Updates{
                 background: gray;
                 width: 1000px;
+                padding: 5px;
             }
             .Updates:hover {
                 border-top-left-radius: 10px;
@@ -27,15 +31,19 @@
                 border-bottom-left-radius: 10px;
                 border-left: 10px solid darkblue;
             }
-            .content {
+            .content, .content1 {
                 position: relative;
                 left: 10px;
             }
             #title {
                 font-size: 100px;
+                color: black;
+                text-shadow: 5px 3px red;
             }
             #info {
                 font-size: 25px;
+                color: black;
+                text-shadow: 2px 2px red;
             }
             .top {
                 text-align: center;
@@ -94,9 +102,21 @@
                 background: linear-gradient(to top, #008aff,#00ffe7);
                 filter: blur(30px);
             }
-        </style>   
+            
+        </style>  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
         <script>
+            var j = $.noConflict()
+            j(document).ready(function() {
+                j(".links").click(function(){
+                    j(".content").slideToggle(500);
+                })
+                j(".Updates").click(function(){
+                    j(".content1").slideToggle(500);
+                })
+            })
         </script>
+
     </head>
     <body>
 
@@ -107,11 +127,11 @@
             <div class="top">
                 <p id="title">EZ money game collection</p>
                 <p id="info">bookmark this tab to keep an eye on when updates and new games get released</p><br>
-                </div>
+            </div>
             <div class="container">
                 <div class="links">
-                    <div class="content">
                     Game links:<br>
+                    <div class="content">
                     EZ money 0:   
                     <a href="https://clockmantellstime.github.io/EZ-money-0/" ><button>Go</button></a><br>
                     EZ money 1:   
@@ -122,8 +142,8 @@
                 </div>  
                 <br>    
                 <div class="Updates">
-                    <div class="content">
                     Updates:<br>
+                    <div class="content1">
                     EZ money 0: none <br>
                     EZ money 1: none <br>
                     EZ money 2: none <br>
@@ -131,11 +151,8 @@
                 </div>
             </div>
         </section>
-
     </body>
 </html>
-<!-- add later-->
-<!--https://javascriptsource.com/show-a-custom-context-menu-at-clicked-position/ -->
 
 
 
