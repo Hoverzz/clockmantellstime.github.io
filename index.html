@@ -9,14 +9,14 @@
                 background-color: black;
                 color: white;
             }
-            button:hover {
-                cursor: pointer;
+            button::after {
+                cursor: help;
             }
             .container {
                 position: absolute;
                 left: 10%;
             }
-            .links,.Updates{
+            .links,.Updates, .creators{
                 background: gray;
                 width: 1000px;
                 padding: 5px;
@@ -24,14 +24,19 @@
             .Updates:hover {
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
-                border-left: 10px solid purple;
+                border-left: 10px solid darkblue;
             }
             .links:hover {
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
-                border-left: 10px solid darkblue;
+                border-left: 10px solid darkcyan;
             }
-            .content, .content1 {
+            .creators:hover {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                border-left: 10px solid purple;
+            }
+            .content, .content1, .content2 {
                 position: relative;
                 left: 10px;
             }
@@ -48,11 +53,11 @@
             .top {
                 text-align: center;
             }
-            ::-webkit-scrollbar {
-                width: 0px;
-            }
             section {
                 right: 50%;
+            }
+            ::-webkit-scrollbar {
+                width: 0px;
             }
             #scrollPath {
                 position: fixed;
@@ -68,7 +73,6 @@
                 top: 0;
                 right: 0;
                 width: 10px;
-                height: 100%;
                 background: linear-gradient(to top, #008aff,#00ffe7);
                 animation: animate 5s linear infinite;
             }
@@ -88,7 +92,6 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
                 background: linear-gradient(to top, #008aff,#00ffe7);
                 filter: blur(10px);
             }
@@ -98,12 +101,17 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
                 background: linear-gradient(to top, #008aff,#00ffe7);
                 filter: blur(30px);
             }
-            
         </style>  
+        <script>
+            window.onscroll = function() {
+                let z = document.body.scrollHeight - window.innerHeight
+                let x = (window.pageYOffset/z) * 100
+                document.getElementById("progressbar").style.height = x + "%"
+            }
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
         <script>
             var j = $.noConflict()
@@ -113,6 +121,9 @@
                 })
                 j(".Updates").click(function(){
                     j(".content1").slideToggle(500);
+                })
+                j(".creators").click(function() {
+                    j(".content2").slideToggle(500)
                 })
             })
         </script>
@@ -149,10 +160,21 @@
                     EZ money 2: none <br>
                     </div>
                 </div>
+                <br>
+                <div class="creators">
+                    Creators:<br>
+                    <div class="content2">
+                    EZ money 0: clockmantellstime <br>
+                    EZ money 1: clockmantellstime <br>
+                    EZ money 2: clockmantellstime <br>
+                    </div>
+                </div>                
             </div>
         </section>
     </body>
 </html>
+<!-- add later-->
+<!--https://javascriptsource.com/show-a-custom-context-menu-at-clicked-position/ -->
 
 
 
