@@ -2,39 +2,52 @@
     <head>
         <style>
             * {
-                margin: 0;
+                margin: auto;
                 padding: 0;
             }
             body{   
                 background-color: black;
                 color: white;
+
             }
-            button::after {
-                cursor: help;
-            }
-            .container {
-                position: absolute;
-                left: 10%;
+            button {
+                cursor: pointer;
+                width: 50px;
+                border-radius: 5px;
+                display: inline-block;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                outline: none;
+
             }
             .links,.Updates, .creators{
+                position: relative;
                 background: gray;
-                width: 1000px;
+                width: 1000px; 
                 padding: 5px;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+
+                
             }
             .Updates:hover {
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                border-left: 10px solid darkblue;
+                width: 980px;
+                border-left: 10px solid orange;
+                border-right: 10px solid orange;
             }
             .links:hover {
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                border-left: 10px solid darkcyan;
+                width: 980px;
+                border-left: 10px solid red;
+                border-right: 10px solid red;
+                
             }
             .creators:hover {
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                border-left: 10px solid purple;
+                width: 980px;
+                border-left: 10px solid gold;
+                border-right: 10px solid gold;
             }
             .content, .content1, .content2 {
                 position: relative;
@@ -104,6 +117,7 @@
                 background: linear-gradient(to top, #008aff,#00ffe7);
                 filter: blur(30px);
             }
+            
         </style>  
         <script>
             window.onscroll = function() {
@@ -116,6 +130,7 @@
         <script>
             var j = $.noConflict()
             j(document).ready(function() {
+                //j(".container").css("width",window.innerHeight/1000 + "px")
                 j(".links").click(function(){
                     j(".content").slideToggle(500);
                 })
@@ -127,6 +142,7 @@
                 })
             })
         </script>
+        <script src="file:///G:/My%20Drive/backups/game/github%20pages/script.js"></script>
 
     </head>
     <body>
@@ -144,7 +160,7 @@
                     Game links:<br>
                     <div class="content">
                     EZ money 0:   
-                    <a href="https://clockmantellstime.github.io/EZ-money-0/" ><button>Go</button></a><br>
+                    <a href="https://clockmantellstime.github.io/EZ-money-0/" ><button class="ez-0">Go</button></a><br>
                     EZ money 1:   
                     <a href="https://clockmantellstime.github.io/EZ-money/" ><button>Go</button></a><br>
                     EZ money 2:   
