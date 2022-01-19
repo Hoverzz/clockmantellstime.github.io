@@ -25,11 +25,14 @@ button{
     font-size: 12px;
 }
 
-/* Start screen */
-.startScreen{
-    position: fixed;
-    z-index: 3;
-    left: 15%;
+
+.startScreen {
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 1000px; 
 }
 .glow{
     font-size: 150px;
