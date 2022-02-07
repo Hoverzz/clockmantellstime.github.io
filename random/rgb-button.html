@@ -1,0 +1,89 @@
+<html>
+    <head id="head">
+        <style>
+            body {
+                background-color: black;
+            }
+            .btn { 
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                cursor: pointer;
+                background-color: rgb(39, 38, 38);
+                color: red;
+                border-radius: .25em;
+                padding: 10px 30px;
+                font-weight: bold;
+                font-size: 15px;
+
+            }
+            .btn:hover {
+                background-color: rgb(27, 27, 27);
+                animation: hover 3s infinite;
+            }
+
+            @keyframes hover {
+                10%,100% {
+                    color: red;
+                    border-bottom-color: red;
+                }
+                20% {
+                    color: orange;
+                    border-bottom-color: orange;
+                }
+                30% {
+                    color: gold;
+                    border-bottom-color: gold;
+                }
+                40% {
+                    color: rgb(49, 117, 49);
+                    border-bottom-color: rgb(49, 117, 49);
+                }
+                50% {
+                    color: cyan;
+                    border-bottom-color: cyan;
+
+                }
+                60% {
+                    color: royalblue;
+                    border-bottom-color: royalblue;
+                }
+                70% {
+                    color: blue;
+                    border-bottom-color: blue;
+                }
+                80% {
+                    color: magenta;
+                    border-bottom-color: magenta;
+                }
+                90% {
+                    color: purple;
+                    border-bottom-color: purple;
+                }
+
+            }
+
+            
+        </style>
+        <script>
+            
+            function update(val) {
+                document.getElementById("progress_fill").style.width = val+"%"
+            }
+            var x = 0
+            function update_progress() {
+                update(x);
+                x += 2;
+                if (document.getElementById("progress_fill").style.width == "100%") {
+                    x = 0;
+                }
+            }
+        </script>
+    </head>
+    <body id="body" onload="test()">
+        <div class="container" id="container">
+            <button class="btn" id="btn" onclick="update_progress()">hover me</button>
+        </div>
+    </body>
+</html>
