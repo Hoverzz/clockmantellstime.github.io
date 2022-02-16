@@ -1,198 +1,50 @@
 <html>
     <head>
-        <style>
-            * {
-                margin: auto;
-                padding: 0;
-            }
-            body{   
-                background-color: black;
-                color: white;
-
-            }
-            button {
-                cursor: pointer;
-                width: 50px;
-                border-radius: 5px;
-                display: inline-block;
-                cursor: pointer;
-                text-align: center;
-                text-decoration: none;
-                outline: none;
-
-            }
-            .links,.Updates, .creators{
-                position: relative;
-                background: gray;
-                width: 1000px; 
-                padding: 5px;
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-
-                
-            }
-            .Updates:hover {
-                width: 980px;
-                border-left: 10px solid orange;
-                border-right: 10px solid orange;
-            }
-            .links:hover {
-                width: 980px;
-                border-left: 10px solid red;
-                border-right: 10px solid red;
-                
-            }
-            .creators:hover {
-                width: 980px;
-                border-left: 10px solid gold;
-                border-right: 10px solid gold;
-            }
-            .content, .content1, .content2 {
-                position: relative;
-                left: 10px;
-            }
-            #title {
-                font-size: 100px;
-                color: black;
-                text-shadow: 5px 3px red;
-            }
-            #info {
-                font-size: 25px;
-                color: black;
-                text-shadow: 2px 2px red;
-            }
-            .top {
-                text-align: center;
-            }
-            section {
-                right: 50%;
-            }
-            ::-webkit-scrollbar {
-                width: 0px;
-            }
-            #scrollPath {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 10px;
-                height: 100%;
-                background: rgba(255, 255, 255, 0,05);
-            }
-
-            #progressbar {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 10px;
-                background: linear-gradient(to top, #008aff,#00ffe7);
-                animation: animate 5s linear infinite;
-            }
-
-            @keyframes animate {
-                0%,100% {
-                    filter: hue-rotate(0deg);
-                }
-                50% {
-                    filter: hue-rotate(360deg);
-                }
-            }
-
-            #progressbar::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to top, #008aff,#00ffe7);
-                filter: blur(10px);
-            }
-            #progressbar::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to top, #008aff,#00ffe7);
-                filter: blur(30px);
-            }
-            
-        </style>  
-        <script>
-            window.onscroll = function() {
-                let z = document.body.scrollHeight - window.innerHeight
-                let x = (window.pageYOffset/z) * 100
-                document.getElementById("progressbar").style.height = x + "%"
-            }
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-        <script>
-            var j = $.noConflict()
-            j(document).ready(function() {
-                //j(".container").css("width",window.innerHeight/1000 + "px")
-                j(".links").click(function(){
-                    j(".content").slideToggle(500);
-                })
-                j(".Updates").click(function(){
-                    j(".content1").slideToggle(500);
-                })
-                j(".creators").click(function() {
-                    j(".content2").slideToggle(500)
-                })
-            })
-        </script>
-        <script src="file:///G:/My%20Drive/backups/game/github%20pages/script.js"></script>
-
+        <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
+    <body id="body" onload="main()">
 
-        <div id="progressbar"></div>
-        <div id="scrollPath"></div>
-
-        <section>
-            <div class="top">
-                <p id="title">EZ money game collection</p>
-                <p id="info">bookmark this tab to keep an eye on when updates and new games get released</p><br>
-            </div>
-            <div class="container">
-                <div class="links">
-                    Game links:<br>
-                    <div class="content">
-                    EZ money 0:   
-                    <a href="https://clockmantellstime.github.io/EZ-money-0/" ><button class="ez-0">Go</button></a><br>
-                    EZ money 1:   
-                    <a href="https://clockmantellstime.github.io/EZ-money/" ><button>Go</button></a><br>
-                    EZ money 2:   
-                    <a href="https://clockmantellstime.github.io/EZ-money-2/" ><button>Go</button></a><br>
-                    </div>
-                </div>  
-                <br>    
-                <div class="Updates">
-                    Updates:<br>
-                    <div class="content1">
-                    EZ money 0: none <br>
-                    EZ money 1: none <br>
-                    EZ money 2: none <br>
-                    </div>
-                </div>
+        <div class="stats">
+            <label class="moneyDisplay" id="moneyDisplay">Money: $0</label>
+        </div>
+        <div class="menus"> 
+            <div class="menu" id="menu">
+                <div class="menu_title">Menu</div>
                 <br>
-                <div class="creators">
-                    Creators:<br>
-                    <div class="content2">
-                    EZ money 0: clockmantellstime <br>
-                    EZ money 1: clockmantellstime <br>
-                    EZ money 2: clockmantellstime <br>
-                    </div>
-                </div>                
+                <br>
+                <button class="toggle_menu" id="toggle" onclick="toggle()">MENU</button>
+                <div class="upgrade_amount_menu">
+                    Upgrade amount:
+                    <select id="upgrade_amount">
+                        <option value=1>1</option>
+                        <option value=10>10</option>
+                        <option value=50>50</option>
+                        <option value=100>100</option>
+                    </select>
+                </div>
+                <button class="menu_options" id="manager" onclick="toggle_manager()">Managers</button>
+                <button class="menu_options" id="upgrade" onclick="toggle_upgrades()"" >Upgrades</button>
             </div>
-        </section>
+    
+            <div class="managers" id="managers">
+                <div class="menu_title">Managers</div>
+                <button class="exit" onclick="toggle_manager()">X</button>
+            </div>
+            <div class="upgrades" id="upgrades" ">
+                <div class="menu_title">Upgrades</div>
+                <button class="exit" onclick="toggle_upgrades()">X</button>
+            </div>
+                
+
+            <div class="prestiges" id="prestiges"></div>
+    
+        </div>
+
+        <br>
+        <div class="sets" id="sets"></div>
+        <br>
+
+        
     </body>
 </html>
-<!-- add later-->
-<!--https://javascriptsource.com/show-a-custom-context-menu-at-clicked-position/ -->
-
-
-
-
- 
