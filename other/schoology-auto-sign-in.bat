@@ -9,7 +9,7 @@ set url="https://launchpad.classlink.com/svsd410"
 
 
 start chrome " " %url% 
-timeout %timeout%
+timeout %timeout1%
 %SendKeys% "^{TAB}"
 timeout %timeout1%
 %SendKeys% "{TAB}"
@@ -19,12 +19,22 @@ timeout %timeout1%
 
 set url="https://accounts.google.com/"
 start chrome " " %url% 
-timeout %timeout%
+timeout %timeout1%
 %SendKeys% "{ENTER}"
-timeout %timeout%
+timeout %timeout1%
 %SendKeys% "{TAB}"
 %SendKeys% "{ENTER}"
 
+timeout 10
+%SendKeys% "^{w}"
+timeout 1
+%SendKeys% "^{TAB}"
+timeout 1
+%SendKeys% "^{w}"
+%SendKeys% "^{TAB}"
+
+TASKKILL /PID cmd.exe
+TASKKILL /PID ScreenShare.exe
 
 pause
 goto :EOF
