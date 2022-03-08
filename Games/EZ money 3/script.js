@@ -378,12 +378,12 @@ function main() {
     topaz = new ore("topaz",10000000,minute*5)
     amathyst = new ore("amathyst",100000000,minute*15)
 
-    load()
     dropDown()
 
     var update = setInterval(function() {update_game()},10)
     
     setTimeout(function(){
+        load()
         var saveGame = setInterval(function() {save()},10)
     },1000);
     
