@@ -156,9 +156,15 @@ class ore {
             }
         }
 
-        /* Auto click */ setInterval(function() {
-            if (EA.spurts.items[e.name].auto) {
-                e.click()
+        /* Auto click */ var clicker = setInterval(function() {
+            try {
+                if (EA.spurts.items[e.name].auto) {
+                    e.click()
+                }
+            }
+            catch(err) {
+                console.log(err)
+                clearInterval(clicker)
             }
         },0)
 
@@ -324,7 +330,7 @@ function save() {
 function load() {
 
     var data = JSON.parse(localStorage.getItem("gameData"))
-    if (typeof(data) != "undefined") {
+    if (typeof(data) != "undefined" && data != null) {
         EA.spurts.items = data;
         update_game()
 
