@@ -1,22 +1,3 @@
-/*TODO:
-keybinds
-make a nicer reset and game 
-
-
-features:
-Add prestige
-add super upgrade
-pretige give you x number of multiplier
-pretige also give x gem mines
-gems used for super upgrades
-
-
-*/
-
-
-/*FIXME: 
-*/
-
 /* Script */ {
 
 
@@ -539,6 +520,8 @@ function loadGame() {
         setTimeout(function(){
         var saveGame = setInterval(function() {save()},10)
         },1000);
+
+        EA.spurts.items[EA.spurts.things[0]].unlocked = true
     }
 }
 
