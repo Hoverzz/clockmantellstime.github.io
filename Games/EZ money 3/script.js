@@ -1,3 +1,21 @@
+/*TODO:
+keybinds
+make a nicer reset and game 
+
+
+features:
+Add prestige
+add super upgrade
+pretige give you x number of multiplier
+pretige also give x gem mines
+gems used for super upgrades
+
+
+*/
+
+
+/*FIXME: 
+*/
 
 /* Script */ {
 
@@ -53,20 +71,20 @@ class ore {
         this.click = function() {
             var n = this.name
             if (EA.spurts.items[n].clicked === false) {
-                var time = EA.spurts.items[n].time
                 var t = Math.floor(EA.spurts.items[n].time_taken)
                 var update = 10
 
                 EA.spurts.items[n].clicked = true
                 var change = setInterval(function() {
                     t = Math.floor(EA.spurts.items[n].time_taken)
-                    time += update
+                    EA.spurts.items[n].time += update
                     var frames = t/update
                     var increase = 100/frames
                     EA.spurts.items[n].progress += increase
                     document.getElementById(n+"_fill").style.width = EA.spurts.items[n].progress+"%"
-                    if (time >= t) {
+                    if (EA.spurts.items[n].time >= t) {
                         EA.spurts.items.money += (EA.spurts.items[n].value * (EA.spurts.items.prestige.amount + 1))
+                        EA.spurts.items[n].time = 0
                         EA.spurts.items[n].clicked = false
                         setTimeout(function(){
                             EA.spurts.items[n].progress = 0
@@ -76,7 +94,6 @@ class ore {
                         clearInterval(change)
                     } 
                 },update)   
-                EA.spurts.items[n].time = 0;             
             }
         }
         
@@ -139,8 +156,8 @@ class ore {
                 }
             }
             catch(err) {
-                console.log(err)
                 clearInterval(clicker)
+                Error(err)
             }
         },0)
 
@@ -253,9 +270,11 @@ function update_game() {
 
         if (EA.spurts.items.money < EA.spurts.items[n].cost) {
             document.getElementById(n+'_upgrade').style.backgroundColor = "red"
+            document.getElementById(n+'_upgrade').style.cursor = "not-allowed"
         }
         else  {
             document.getElementById(n+'_upgrade').style.backgroundColor = "#FCFCFC"
+            document.getElementById(n+'_upgrade').style.cursor = "pointer"
         }
 
         const change = EA.spurts.items[n].time_change
@@ -294,18 +313,17 @@ function tidy(char) {
         }
     }
     catch(err) {
-        reset();
+        Error(err)
     }
 }
 
 function save() {
     localStorage.clear()
-    localStorage.setItem("gameData",JSON.stringify(EA.spurts.items))
+    localStorage.setItem("EZ_money_3_save",JSON.stringify(EA.spurts.items))
 }
 
 function load() {
-
-    var data = JSON.parse(localStorage.getItem("gameData"))
+    var data = JSON.parse(localStorage.getItem("EZ_money_3_save"))
     if (typeof(data) != "undefined" && data != null) {
         EA.spurts.items = data;
         update_game()
@@ -319,6 +337,8 @@ function load() {
 
 function reset() {
     EA  = new game(items,things)
+    save()
+    load()
 }
 
 var start_screen = true
@@ -357,14 +377,8 @@ function main() {
     topaz = new ore("topaz",10000000,minute*5)
     amathyst = new ore("amathyst",100000000,minute*15)
     
-
-    
     dropDown()
 
-    var update = setInterval(function() {update_game()},10)
-    setTimeout(function(){
-        var saveGame = setInterval(function() {save()},10)
-    },1000);
     
 }
 
@@ -506,8 +520,6 @@ function fadeIn(id) {
 
 function loadGame() {
     if (start_screen) {
-        load()
-
         document.getElementById("body").style.backgroundColor = "white"
 
         var screen = document.getElementById("startScreen")
@@ -518,7 +530,20 @@ function loadGame() {
         document.getElementById("stats").style.visibility = "visible"
 
         start_screen = false
+
+        load()
+
+        var update = setInterval(function() {update_game()},10)
+        setTimeout(function(){
+        var saveGame = setInterval(function() {save()},10)
+        },1000);
     }
+}
+
+function Error(err) {
+    document.getElementById('body').innerHTML = "<label class='error'>Error</label>"
+    reset()
+    console.log(err)
 }
 
 
