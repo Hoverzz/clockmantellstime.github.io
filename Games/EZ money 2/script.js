@@ -264,10 +264,10 @@ function start() {
 }
 
 function save() {
-    localStorage.setItem("data",JSON.stringify(mainGame.data));
+    localStorage.setItem("EZ_money_2_save",JSON.stringify(mainGame.data));
 }
 function load() {
-    var data  = JSON.parse(localStorage.getItem("data"))
+    var data  = JSON.parse(localStorage.getItem("EZ_money_2_save"))
     if (typeof data !== "undefined") {
         for (var x in data) {
             mainGame.data[x] = data[x]
