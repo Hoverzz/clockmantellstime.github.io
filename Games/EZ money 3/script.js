@@ -1,21 +1,4 @@
-/*TODO:
-keybinds
-make a nicer reset and game 
 
-
-features:
-Add prestige
-add super upgrade
-pretige give you x number of multiplier
-pretige also give x gem mines
-gems used for super upgrades
-
-
-*/
-
-
-/*FIXME: 
-*/
 
 /* Script */ {
 
@@ -402,8 +385,8 @@ document.addEventListener('keydown',e => {
 
         if (e.key.toLowerCase() == "r" && e.shiftKey && e.metaKey) {
             e.preventDefault()
-            alert("progress reset","Lol get rekt you idiot, some person reset your progress so deal with it and dont cry!")
-            reset()
+            alert("progress reset","Lol get rekt you idiot, some person reset your progress so deal with it and dont cry! Also this resets all the progress from all the easy moneys loloololololollo")
+            localStorage.clear()
         }
 
         if (e.key.toLowerCase() == "m") {
