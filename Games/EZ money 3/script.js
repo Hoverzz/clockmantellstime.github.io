@@ -1,4 +1,21 @@
+/*TODO:
+keybinds
+make a nicer reset and game 
 
+
+features:
+Add prestige
+add super upgrade
+pretige give you x number of multiplier
+pretige also give x gem mines
+gems used for super upgrades
+
+
+*/
+
+
+/*FIXME: 
+*/
 
 /* Script */ {
 
@@ -233,6 +250,9 @@ function update_game() {
 
         if (EA.spurts.items[n].unlocked) {
             document.getElementById(n+'_set').classList.replace("locked","unlocked")
+        }
+        else {
+            document.getElementById(n+'_set').classList.replace("unlocked","locked")
         }
 
         var x = n
