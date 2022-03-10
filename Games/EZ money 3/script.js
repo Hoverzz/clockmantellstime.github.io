@@ -1,36 +1,12 @@
-/*TODO:
-keybinds
-make a nicer reset and game 
-
-
-features:
-Add prestige
-add super upgrade
-pretige give you x number of multiplier
-pretige also give x gem mines
-gems used for super upgrades
-
-
-*/
-
-
-/*FIXME: 
-*/
 
 /* Script */ {
 
 
 class game {
-    constructor() {
+    constructor(list) {
         this.spurts = {
-            items: {
-                money: 0,
-                prestige: {
-                    amount: 0,
-                    cost: 10
-                }
-            },
-            things: [],
+            items: items,
+            things: things,
             
         }
     }
@@ -49,8 +25,8 @@ class ore {
         const n = this.name
         var e = this
         
-        game_structure.spurts.things.push(n)
-        game_structure.spurts.items[n] = {
+        things.push(n)
+        items[n] = {
             value: this.value,
             original_value: this.value,
             level: 1,
@@ -147,8 +123,8 @@ class ore {
         }
 
         this._3X = function() {
-            if ((EA.spurts.items.money - game_structure.spurts.items[n].original_price*20) >= 0 && document.getElementById(n+'_set').classList.contains("unlocked")) {
-                EA.spurts.items.money -= game_structure.spurts.items[n].original_price*20
+            if ((EA.spurts.items.money - EA.spurts.items[n].original_price*20) >= 0 && document.getElementById(n+'_set').classList.contains("unlocked")) {
+                EA.spurts.items.money -= EA.spurts.items[n].original_price*20
                 EA.spurts.items[n].upgrade_multiplier *= 3
 
                 EA.spurts.items[n]._3X = true;
@@ -342,23 +318,20 @@ function load() {
 }
 
 function reset() {
-    document.getElementById("sets").innerHTML = ""
-    game_structure = new game()
-    EA  = game_structure
-    dirt = new ore("dirt",1,second)
-    stone = new ore("stone",10,second * 2)
-    copper = new ore("copper",100,second * 5)
-    iron = new ore("iron",1000,second * 10)
-    steel = new ore("steel",10000,second * 30)
-    bronze = new ore("bronze",100000,minute)
-    gold = new ore("gold",1000000,minute*2.5)
-    topaz = new ore("topaz",10000000,minute*5)
-    amathyst = new ore("amathyst",100000000,minute*15)
-
+    EA  = new game(items,things)
 }
 
 var start_screen = true
 var alert_box = false
+
+var items = {
+    money: 0,
+    prestige: {
+        amount: 0,
+        cost: 10
+    }
+}
+var things = []
 
 const second = 1000
 const minute = 60000
@@ -370,26 +343,25 @@ const year = month * 12
 const decade = year * 10
 const centery = decade * 10
 
-var game_structure = new game()
-var EA  = game_structure
+var EA  = new game()
 
 function main() {
     dirt = new ore("dirt",1,second)
     stone = new ore("stone",10,second * 2)
     copper = new ore("copper",100,second * 5)
     iron = new ore("iron",1000,second * 10)
+    silver = new ore("silver",5500,second*20)
     steel = new ore("steel",10000,second * 30)
     bronze = new ore("bronze",100000,minute)
     gold = new ore("gold",1000000,minute*2.5)
     topaz = new ore("topaz",10000000,minute*5)
     amathyst = new ore("amathyst",100000000,minute*15)
+    
 
-    load()
+    
     dropDown()
-    save()
 
     var update = setInterval(function() {update_game()},10)
-    
     setTimeout(function(){
         var saveGame = setInterval(function() {save()},10)
     },1000);
@@ -534,6 +506,8 @@ function fadeIn(id) {
 
 function loadGame() {
     if (start_screen) {
+        load()
+
         document.getElementById("body").style.backgroundColor = "white"
 
         var screen = document.getElementById("startScreen")
