@@ -318,7 +318,6 @@ function tidy(char) {
 }
 
 function save() {
-    localStorage.clear()
     localStorage.setItem("EZ_money_3_save",JSON.stringify(EA.spurts.items))
 }
 
